@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="pharmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="customer">
+        <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -15,7 +15,7 @@
           <Property Name="phone" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="medication">
+        <EntityType Name="Medication">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -26,7 +26,7 @@
           <Property Name="suplier_id" Type="int" />
           <Property Name="photo_id" Type="int" />
         </EntityType>
-        <EntityType Name="order">
+        <EntityType Name="Order">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -35,7 +35,7 @@
           <Property Name="customer_id" Type="int" Nullable="false" />
           <Property Name="date" Type="date" />
         </EntityType>
-        <EntityType Name="order_details">
+        <EntityType Name="Order_details">
           <Key>
             <PropertyRef Name="order_id" />
             <PropertyRef Name="medication_id" />
@@ -45,21 +45,21 @@
           <Property Name="price" Type="int" Nullable="false" />
           <Property Name="quantity" Type="int" />
         </EntityType>
-        <EntityType Name="photo">
+        <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="photo" Type="image" Nullable="false" />
         </EntityType>
-        <EntityType Name="stock">
+        <EntityType Name="Stock">
           <Key>
             <PropertyRef Name="medication_id" />
           </Key>
           <Property Name="medication_id" Type="int" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="suplier">
+        <EntityType Name="Suplier">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -69,7 +69,7 @@
           <Property Name="phone" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="usr">
+        <EntityType Name="Usr">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -79,125 +79,125 @@
           <Property Name="role" Type="int" />
         </EntityType>
         <Association Name="FK_details_medication">
-          <End Role="medication" Type="Self.medication" Multiplicity="1" />
-          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
+          <End Role="Order_details" Type="Self.Order_details" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="medication">
+            <Principal Role="Medication">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="order_details">
+            <Dependent Role="Order_details">
               <PropertyRef Name="medication_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_medication_photo">
-          <End Role="photo" Type="Self.photo" Multiplicity="0..1" />
-          <End Role="medication" Type="Self.medication" Multiplicity="*" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+          <End Role="Medication" Type="Self.Medication" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="photo">
+            <Principal Role="Photo">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="medication">
+            <Dependent Role="Medication">
               <PropertyRef Name="photo_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_medication_suplier">
-          <End Role="suplier" Type="Self.suplier" Multiplicity="0..1" />
-          <End Role="medication" Type="Self.medication" Multiplicity="*" />
+          <End Role="Suplier" Type="Self.Suplier" Multiplicity="0..1" />
+          <End Role="Medication" Type="Self.Medication" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="suplier">
+            <Principal Role="Suplier">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="medication">
+            <Dependent Role="Medication">
               <PropertyRef Name="suplier_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_order_customer">
-          <End Role="customer" Type="Self.customer" Multiplicity="1" />
-          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="customer">
+            <Principal Role="Customer">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="order">
+            <Dependent Role="Order">
               <PropertyRef Name="customer_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_order_details">
-          <End Role="order" Type="Self.order" Multiplicity="1" />
-          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order_details" Type="Self.Order_details" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="order">
+            <Principal Role="Order">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="order_details">
+            <Dependent Role="Order_details">
               <PropertyRef Name="order_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_order_usr">
-          <End Role="usr" Type="Self.usr" Multiplicity="1" />
-          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="usr">
+            <Principal Role="Usr">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="order">
+            <Dependent Role="Order">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_stock_medication">
-          <End Role="medication" Type="Self.medication" Multiplicity="1" />
-          <End Role="stock" Type="Self.stock" Multiplicity="0..1" />
+          <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="medication">
+            <Principal Role="Medication">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="stock">
+            <Dependent Role="Stock">
               <PropertyRef Name="medication_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="pharmaModelStoreContainer">
-          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="medication" EntityType="Self.medication" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="order_details" EntityType="Self.order_details" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="photo" EntityType="Self.photo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="stock" EntityType="Self.stock" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="suplier" EntityType="Self.suplier" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="usr" EntityType="Self.usr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medication" EntityType="Self.Medication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_details" EntityType="Self.Order_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suplier" EntityType="Self.Suplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usr" EntityType="Self.Usr" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_details_medication" Association="Self.FK_details_medication">
-            <End Role="medication" EntitySet="medication" />
-            <End Role="order_details" EntitySet="order_details" />
+            <End Role="Medication" EntitySet="Medication" />
+            <End Role="Order_details" EntitySet="Order_details" />
           </AssociationSet>
           <AssociationSet Name="FK_medication_photo" Association="Self.FK_medication_photo">
-            <End Role="photo" EntitySet="photo" />
-            <End Role="medication" EntitySet="medication" />
+            <End Role="Photo" EntitySet="Photo" />
+            <End Role="Medication" EntitySet="Medication" />
           </AssociationSet>
           <AssociationSet Name="FK_medication_suplier" Association="Self.FK_medication_suplier">
-            <End Role="suplier" EntitySet="suplier" />
-            <End Role="medication" EntitySet="medication" />
+            <End Role="Suplier" EntitySet="Suplier" />
+            <End Role="Medication" EntitySet="Medication" />
           </AssociationSet>
           <AssociationSet Name="FK_order_customer" Association="Self.FK_order_customer">
-            <End Role="customer" EntitySet="customer" />
-            <End Role="order" EntitySet="order" />
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_order_details" Association="Self.FK_order_details">
-            <End Role="order" EntitySet="order" />
-            <End Role="order_details" EntitySet="order_details" />
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Order_details" EntitySet="Order_details" />
           </AssociationSet>
           <AssociationSet Name="FK_order_usr" Association="Self.FK_order_usr">
-            <End Role="usr" EntitySet="usr" />
-            <End Role="order" EntitySet="order" />
+            <End Role="Usr" EntitySet="Usr" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_stock_medication" Association="Self.FK_stock_medication">
-            <End Role="medication" EntitySet="medication" />
-            <End Role="stock" EntitySet="stock" />
+            <End Role="Medication" EntitySet="Medication" />
+            <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -205,7 +205,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="pharmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="customer">
+        <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -214,9 +214,9 @@
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="orders" Relationship="Self.FK_order_customer" FromRole="customer" ToRole="order" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_order_customer" FromRole="Customer" ToRole="Order" />
         </EntityType>
-        <EntityType Name="medication">
+        <EntityType Name="Medication">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -226,12 +226,12 @@
           <Property Name="unit" Type="Int32" />
           <Property Name="suplier_id" Type="Int32" />
           <Property Name="photo_id" Type="Int32" />
-          <NavigationProperty Name="order_details" Relationship="Self.FK_details_medication" FromRole="medication" ToRole="order_details" />
-          <NavigationProperty Name="photo" Relationship="Self.FK_medication_photo" FromRole="medication" ToRole="photo" />
-          <NavigationProperty Name="suplier" Relationship="Self.FK_medication_suplier" FromRole="medication" ToRole="suplier" />
-          <NavigationProperty Name="stock" Relationship="Self.FK_stock_medication" FromRole="medication" ToRole="stock" />
+          <NavigationProperty Name="Order_details" Relationship="Self.FK_details_medication" FromRole="Medication" ToRole="Order_details" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK_medication_photo" FromRole="Medication" ToRole="Photo" />
+          <NavigationProperty Name="Suplier" Relationship="Self.FK_medication_suplier" FromRole="Medication" ToRole="Suplier" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_stock_medication" FromRole="Medication" ToRole="Stock" />
         </EntityType>
-        <EntityType Name="order">
+        <EntityType Name="Order">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -239,11 +239,11 @@
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="customer_id" Type="Int32" Nullable="false" />
           <Property Name="date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="customer" Relationship="Self.FK_order_customer" FromRole="order" ToRole="customer" />
-          <NavigationProperty Name="order_details" Relationship="Self.FK_order_details" FromRole="order" ToRole="order_details" />
-          <NavigationProperty Name="usr" Relationship="Self.FK_order_usr" FromRole="order" ToRole="usr" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_order_customer" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="Order_details" Relationship="Self.FK_order_details" FromRole="Order" ToRole="Order_details" />
+          <NavigationProperty Name="Usr" Relationship="Self.FK_order_usr" FromRole="Order" ToRole="Usr" />
         </EntityType>
-        <EntityType Name="order_details">
+        <EntityType Name="Order_details">
           <Key>
             <PropertyRef Name="order_id" />
             <PropertyRef Name="medication_id" />
@@ -252,26 +252,26 @@
           <Property Name="medication_id" Type="Int32" Nullable="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" />
-          <NavigationProperty Name="medication" Relationship="Self.FK_details_medication" FromRole="order_details" ToRole="medication" />
-          <NavigationProperty Name="order" Relationship="Self.FK_order_details" FromRole="order_details" ToRole="order" />
+          <NavigationProperty Name="Medication" Relationship="Self.FK_details_medication" FromRole="Order_details" ToRole="Medication" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_order_details" FromRole="Order_details" ToRole="Order" />
         </EntityType>
-        <EntityType Name="photo">
+        <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="photo1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="medications" Relationship="Self.FK_medication_photo" FromRole="photo" ToRole="medication" />
+          <NavigationProperty Name="Medications" Relationship="Self.FK_medication_photo" FromRole="Photo" ToRole="Medication" />
         </EntityType>
-        <EntityType Name="stock">
+        <EntityType Name="Stock">
           <Key>
             <PropertyRef Name="medication_id" />
           </Key>
           <Property Name="medication_id" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="medication" Relationship="Self.FK_stock_medication" FromRole="stock" ToRole="medication" />
+          <NavigationProperty Name="Medication" Relationship="Self.FK_stock_medication" FromRole="Stock" ToRole="Medication" />
         </EntityType>
-        <EntityType Name="suplier">
+        <EntityType Name="Suplier">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -280,9 +280,9 @@
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="medications" Relationship="Self.FK_medication_suplier" FromRole="suplier" ToRole="medication" />
+          <NavigationProperty Name="Medications" Relationship="Self.FK_medication_suplier" FromRole="Suplier" ToRole="Medication" />
         </EntityType>
-        <EntityType Name="usr">
+        <EntityType Name="Usr">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -290,128 +290,128 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="role" Type="pharmaModel.EnumRole" />
-          <NavigationProperty Name="orders" Relationship="Self.FK_order_usr" FromRole="usr" ToRole="order" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_order_usr" FromRole="Usr" ToRole="Order" />
         </EntityType>
         <Association Name="FK_order_customer">
-          <End Role="customer" Type="Self.customer" Multiplicity="1" />
-          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="customer">
+            <Principal Role="Customer">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="order">
+            <Dependent Role="Order">
               <PropertyRef Name="customer_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_details_medication">
-          <End Role="medication" Type="Self.medication" Multiplicity="1" />
-          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
+          <End Role="Order_details" Type="Self.Order_details" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="medication">
+            <Principal Role="Medication">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="order_details">
+            <Dependent Role="Order_details">
               <PropertyRef Name="medication_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_medication_photo">
-          <End Role="photo" Type="Self.photo" Multiplicity="0..1" />
-          <End Role="medication" Type="Self.medication" Multiplicity="*" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+          <End Role="Medication" Type="Self.Medication" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="photo">
+            <Principal Role="Photo">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="medication">
+            <Dependent Role="Medication">
               <PropertyRef Name="photo_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_medication_suplier">
-          <End Role="suplier" Type="Self.suplier" Multiplicity="0..1" />
-          <End Role="medication" Type="Self.medication" Multiplicity="*" />
+          <End Role="Suplier" Type="Self.Suplier" Multiplicity="0..1" />
+          <End Role="Medication" Type="Self.Medication" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="suplier">
+            <Principal Role="Suplier">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="medication">
+            <Dependent Role="Medication">
               <PropertyRef Name="suplier_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_stock_medication">
-          <End Role="medication" Type="Self.medication" Multiplicity="1" />
-          <End Role="stock" Type="Self.stock" Multiplicity="0..1" />
+          <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="medication">
+            <Principal Role="Medication">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="stock">
+            <Dependent Role="Stock">
               <PropertyRef Name="medication_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_order_details">
-          <End Role="order" Type="Self.order" Multiplicity="1" />
-          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order_details" Type="Self.Order_details" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="order">
+            <Principal Role="Order">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="order_details">
+            <Dependent Role="Order_details">
               <PropertyRef Name="order_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_order_usr">
-          <End Role="usr" Type="Self.usr" Multiplicity="1" />
-          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="usr">
+            <Principal Role="Usr">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="order">
+            <Dependent Role="Order">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="pharmaConn" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="customers" EntityType="Self.customer" />
-          <EntitySet Name="medications" EntityType="Self.medication" />
-          <EntitySet Name="orders" EntityType="Self.order" />
-          <EntitySet Name="order_details" EntityType="Self.order_details" />
-          <EntitySet Name="photos" EntityType="Self.photo" />
-          <EntitySet Name="stocks" EntityType="Self.stock" />
-          <EntitySet Name="supliers" EntityType="Self.suplier" />
-          <EntitySet Name="usrs" EntityType="Self.usr" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Medications" EntityType="Self.Medication" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Order_details" EntityType="Self.Order_details" />
+          <EntitySet Name="Photos" EntityType="Self.Photo" />
+          <EntitySet Name="Stocks" EntityType="Self.Stock" />
+          <EntitySet Name="Supliers" EntityType="Self.Suplier" />
+          <EntitySet Name="Usrs" EntityType="Self.Usr" />
           <AssociationSet Name="FK_order_customer" Association="Self.FK_order_customer">
-            <End Role="customer" EntitySet="customers" />
-            <End Role="order" EntitySet="orders" />
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_details_medication" Association="Self.FK_details_medication">
-            <End Role="medication" EntitySet="medications" />
-            <End Role="order_details" EntitySet="order_details" />
+            <End Role="Medication" EntitySet="Medications" />
+            <End Role="Order_details" EntitySet="Order_details" />
           </AssociationSet>
           <AssociationSet Name="FK_medication_photo" Association="Self.FK_medication_photo">
-            <End Role="photo" EntitySet="photos" />
-            <End Role="medication" EntitySet="medications" />
+            <End Role="Photo" EntitySet="Photos" />
+            <End Role="Medication" EntitySet="Medications" />
           </AssociationSet>
           <AssociationSet Name="FK_medication_suplier" Association="Self.FK_medication_suplier">
-            <End Role="suplier" EntitySet="supliers" />
-            <End Role="medication" EntitySet="medications" />
+            <End Role="Suplier" EntitySet="Supliers" />
+            <End Role="Medication" EntitySet="Medications" />
           </AssociationSet>
           <AssociationSet Name="FK_stock_medication" Association="Self.FK_stock_medication">
-            <End Role="medication" EntitySet="medications" />
-            <End Role="stock" EntitySet="stocks" />
+            <End Role="Medication" EntitySet="Medications" />
+            <End Role="Stock" EntitySet="Stocks" />
           </AssociationSet>
           <AssociationSet Name="FK_order_details" Association="Self.FK_order_details">
-            <End Role="order" EntitySet="orders" />
-            <End Role="order_details" EntitySet="order_details" />
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Order_details" EntitySet="Order_details" />
           </AssociationSet>
           <AssociationSet Name="FK_order_usr" Association="Self.FK_order_usr">
-            <End Role="usr" EntitySet="usrs" />
-            <End Role="order" EntitySet="orders" />
+            <End Role="Usr" EntitySet="Usrs" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
         </EntityContainer>
         <EnumType Name="EnumRole">
@@ -424,9 +424,9 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="pharmaModelStoreContainer" CdmEntityContainer="pharmaConn">
-          <EntitySetMapping Name="customers">
-            <EntityTypeMapping TypeName="pharmaModel.customer">
-              <MappingFragment StoreEntitySet="customer">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="pharmaModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -435,9 +435,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="medications">
-            <EntityTypeMapping TypeName="pharmaModel.medication">
-              <MappingFragment StoreEntitySet="medication">
+          <EntitySetMapping Name="Medications">
+            <EntityTypeMapping TypeName="pharmaModel.Medication">
+              <MappingFragment StoreEntitySet="Medication">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -447,9 +447,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="orders">
-            <EntityTypeMapping TypeName="pharmaModel.order">
-              <MappingFragment StoreEntitySet="order">
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="pharmaModel.Order">
+              <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
@@ -457,9 +457,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="order_details">
-            <EntityTypeMapping TypeName="pharmaModel.order_details">
-              <MappingFragment StoreEntitySet="order_details">
+          <EntitySetMapping Name="Order_details">
+            <EntityTypeMapping TypeName="pharmaModel.Order_details">
+              <MappingFragment StoreEntitySet="Order_details">
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="medication_id" ColumnName="medication_id" />
                 <ScalarProperty Name="price" ColumnName="price" />
@@ -467,25 +467,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="photos">
-            <EntityTypeMapping TypeName="pharmaModel.photo">
-              <MappingFragment StoreEntitySet="photo">
+          <EntitySetMapping Name="Photos">
+            <EntityTypeMapping TypeName="pharmaModel.Photo">
+              <MappingFragment StoreEntitySet="Photo">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="photo1" ColumnName="photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="stocks">
-            <EntityTypeMapping TypeName="pharmaModel.stock">
-              <MappingFragment StoreEntitySet="stock">
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="pharmaModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
                 <ScalarProperty Name="medication_id" ColumnName="medication_id" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="supliers">
-            <EntityTypeMapping TypeName="pharmaModel.suplier">
-              <MappingFragment StoreEntitySet="suplier">
+          <EntitySetMapping Name="Supliers">
+            <EntityTypeMapping TypeName="pharmaModel.Suplier">
+              <MappingFragment StoreEntitySet="Suplier">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -494,9 +494,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="usrs">
-            <EntityTypeMapping TypeName="pharmaModel.usr">
-              <MappingFragment StoreEntitySet="usr">
+          <EntitySetMapping Name="Usrs">
+            <EntityTypeMapping TypeName="pharmaModel.Usr">
+              <MappingFragment StoreEntitySet="Usr">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />

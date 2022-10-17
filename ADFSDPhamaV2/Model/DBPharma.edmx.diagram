@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="08a3999aec364a3f8dd9800ce51104f6" Name="Diagram1">
-        <EntityTypeShape EntityType="pharmaModel.customer" Width="1.5" PointX="8.875" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.medication" Width="1.5" PointX="5.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.order" Width="1.5" PointX="12.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.order_details" Width="1.5" PointX="8.875" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.photo" Width="1.5" PointX="2.5" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.stock" Width="1.5" PointX="4.875" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.suplier" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.usr" Width="1.5" PointX="12.875" PointY="5.125" IsExpanded="true" />
+      <Diagram DiagramId="cb49d8005f4e40449b6c942a33070757" Name="Diagram1">
+        <EntityTypeShape EntityType="pharmaModel.Customer" Width="1.5" PointX="10.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.Medication" Width="1.5" PointX="3.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.Order" Width="1.5" PointX="8.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.Order_details" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.Photo" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.Stock" Width="1.5" PointX="3.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.Suplier" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.Usr" Width="1.5" PointX="7.875" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="pharmaModel.FK_order_customer" ManuallyRouted="false" />
         <AssociationConnector Association="pharmaModel.FK_details_medication" ManuallyRouted="false" />
         <AssociationConnector Association="pharmaModel.FK_medication_photo" ManuallyRouted="false" />

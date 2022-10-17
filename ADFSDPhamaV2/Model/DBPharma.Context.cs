@@ -7,15 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ADFSDPhamaV2
+namespace ADFSDPhamaV2.Model
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class pharmaConn : DbContext
+    public partial class PharmaConn : DbContext
     {
-        public pharmaConn()
+        public PharmaConn()
             : base("name=pharmaConn")
         {
         }
@@ -25,13 +25,13 @@ namespace ADFSDPhamaV2
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<customer> customers { get; set; }
-        public virtual DbSet<medication> medications { get; set; }
-        public virtual DbSet<order> orders { get; set; }
-        public virtual DbSet<order_details> order_details { get; set; }
-        public virtual DbSet<photo> photos { get; set; }
-        public virtual DbSet<stock> stocks { get; set; }
-        public virtual DbSet<suplier> supliers { get; set; }
-        public virtual DbSet<usr> usrs { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Medication> Medications { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Order_details> Order_details { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<Stock> Stocks { get; set; }
+        public virtual DbSet<Suplier> Supliers { get; set; }
+        public virtual DbSet<Usr> Usrs { get; set; }
     }
 }

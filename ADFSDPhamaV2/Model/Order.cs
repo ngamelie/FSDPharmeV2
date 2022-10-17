@@ -7,25 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ADFSDPhamaV2
+namespace ADFSDPhamaV2.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class usr
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public usr()
+        public Order()
         {
-            this.orders = new HashSet<order>();
+            this.Order_details = new HashSet<Order_details>();
         }
     
         public int id { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public Nullable<EnumRole> role { get; set; }
+        public int user_id { get; set; }
+        public int customer_id { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
     
+        public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<order> orders { get; set; }
+        public virtual ICollection<Order_details> Order_details { get; set; }
+        public virtual Usr Usr { get; set; }
     }
 }

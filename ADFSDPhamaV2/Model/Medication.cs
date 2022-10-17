@@ -7,23 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ADFSDPhamaV2
+namespace ADFSDPhamaV2.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class photo
+    public partial class Medication
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public photo()
+        public Medication()
         {
-            this.medications = new HashSet<medication>();
+            this.Order_details = new HashSet<Order_details>();
         }
     
         public int id { get; set; }
-        public byte[] photo1 { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public Nullable<int> unit { get; set; }
+        public Nullable<int> suplier_id { get; set; }
+        public Nullable<int> photo_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<medication> medications { get; set; }
+        public virtual ICollection<Order_details> Order_details { get; set; }
+        public virtual Photo Photo { get; set; }
+        public virtual Suplier Suplier { get; set; }
+        public virtual Stock Stock { get; set; }
     }
 }

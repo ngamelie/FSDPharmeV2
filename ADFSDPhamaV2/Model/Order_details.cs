@@ -7,16 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ADFSDPhamaV2
+namespace ADFSDPhamaV2.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class stock
+    public partial class Order_details
     {
+        public int order_id { get; set; }
         public int medication_id { get; set; }
-        public int quantity { get; set; }
+        public int price { get; set; }
+        public Nullable<int> quantity { get; set; }
     
-        public virtual medication medication { get; set; }
+        public virtual Medication Medication { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

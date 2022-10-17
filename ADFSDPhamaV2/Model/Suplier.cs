@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ADFSDPhamaV2
+namespace ADFSDPhamaV2.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class suplier
+    public partial class Suplier
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public suplier()
+        public Suplier()
         {
-            this.medications = new HashSet<medication>();
+            this.Medications = new HashSet<Medication>();
         }
     
         public int id { get; set; }
@@ -27,6 +27,6 @@ namespace ADFSDPhamaV2
         public string address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<medication> medications { get; set; }
+        public virtual ICollection<Medication> Medications { get; set; }
     }
 }

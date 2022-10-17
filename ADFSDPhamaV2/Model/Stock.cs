@@ -7,13 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ADFSDPhamaV2
+namespace ADFSDPhamaV2.Model
 {
     using System;
+    using System.Collections.Generic;
     
-    public enum EnumRole : int
+    public partial class Stock
     {
-        admin = 1,
-        user = 0
+        public int medication_id { get; set; }
+        public int quantity { get; set; }
+    
+        public virtual Medication Medication { get; set; }
     }
 }

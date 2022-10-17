@@ -7,19 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ADFSDPhamaV2
+namespace ADFSDPhamaV2.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class order_details
+    public enum EnumRole : int
     {
-        public int order_id { get; set; }
-        public int medication_id { get; set; }
-        public int price { get; set; }
-        public Nullable<int> quantity { get; set; }
-    
-        public virtual medication medication { get; set; }
-        public virtual order order { get; set; }
+        admin = 1,
+        user = 0
     }
 }

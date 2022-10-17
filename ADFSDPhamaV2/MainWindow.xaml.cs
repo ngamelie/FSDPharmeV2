@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ADFSDPhamaV2.Model;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,28 +55,53 @@ namespace ADFSDPhamaV2
 
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            string user = TbxUsername.Text;
-            string pw = PbxPassword.Password.ToString();
-            if ((user == "admin") && (pw == "123"))
+
+
+
+
+            PharmaConn pharmaConn = new PharmaConn();
+
+
+            string uname = TbxUsername.Text;
+            string pword = PbxPassword.Password.ToString();
+
+
+            //Usr rs = pharmaConn.Usrs.Find(1, uname, pword);
+            Usr rs = pharmaConn.Usrs.Find(1);
+
+            if (rs == null)
             {
-                //Admin admin = new Admin();
-                //this.Visibility = Visibility.Hidden;
-                //admin.Show();
-            }
-            else if ((user == "user") && (pw == "123"))
-            {
-                //Admin admin = new Admin();
-                //this.Visibility = Visibility.Hidden;
-                //admin.Show();
+                MessageBox.Show("Invalid username and password");
             }
             else
             {
-                //MessageBox.Show("Invalid username and password");
-            }
+                Admin admin = new Admin();
+                this.Visibility = Visibility.Hidden;
+                admin.Show();
 
-            Admin admin = new Admin();
-            this.Visibility = Visibility.Hidden;
-            admin.Show();
+                /*
+                if(rs.role == EnumRole.admin)
+                {
+                    Admin admin = new Admin();
+                    this.Visibility = Visibility.Hidden;
+                    admin.Show();
+                }
+                else if (rs.role == EnumRole.user)
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Please contact your system administrator.");
+                }
+                */
+            }
+                
+
+
+
+
+            
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
