@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="08a3999aec364a3f8dd9800ce51104f6" Name="Diagram1">
-        <EntityTypeShape EntityType="pharmaModel.customer" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.medication" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.order" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.order_details" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.photo" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.stock" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.customer" Width="1.5" PointX="8.875" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.medication" Width="1.5" PointX="5.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.order" Width="1.5" PointX="12.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.order_details" Width="1.5" PointX="8.875" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.photo" Width="1.5" PointX="2.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.stock" Width="1.5" PointX="4.875" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="pharmaModel.suplier" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pharmaModel.usr" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.usr" Width="1.5" PointX="12.875" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="pharmaModel.FK_order_customer" ManuallyRouted="false" />
         <AssociationConnector Association="pharmaModel.FK_details_medication" ManuallyRouted="false" />
         <AssociationConnector Association="pharmaModel.FK_medication_photo" ManuallyRouted="false" />
