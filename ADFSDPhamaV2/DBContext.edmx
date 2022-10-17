@@ -289,7 +289,7 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="role" Type="Int32" />
+          <Property Name="role" Type="pharmaModel.EnumRole" />
           <NavigationProperty Name="orders" Relationship="Self.FK_order_usr" FromRole="usr" ToRole="order" />
         </EntityType>
         <Association Name="FK_order_customer">
@@ -414,6 +414,10 @@
             <End Role="order" EntitySet="orders" />
           </AssociationSet>
         </EntityContainer>
+        <EnumType Name="EnumRole">
+          <Member Name="admin" Value="1" />
+          <Member Name="user" Value="0" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

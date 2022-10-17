@@ -23,7 +23,7 @@ namespace ADFSDPhamaV2
         public int id { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public Nullable<int> role { get; set; }
+        public Nullable<EnumRole> role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order> orders { get; set; }
