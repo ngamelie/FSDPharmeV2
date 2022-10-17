@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="08a3999aec364a3f8dd9800ce51104f6" Name="Diagram1">
+        <EntityTypeShape EntityType="pharmaModel.customer" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.medication" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.order" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.order_details" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.photo" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.stock" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.suplier" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaModel.usr" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="pharmaModel.FK_order_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaModel.FK_details_medication" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaModel.FK_medication_photo" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaModel.FK_medication_suplier" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaModel.FK_stock_medication" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaModel.FK_order_details" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaModel.FK_order_usr" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
