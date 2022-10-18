@@ -16,7 +16,7 @@ namespace ADFSDPhamaV2.Model
     public partial class PharmaConn : DbContext
     {
         public PharmaConn()
-            : base("name=pharmaConn")
+            : base("name=PharmaConn")
         {
         }
     

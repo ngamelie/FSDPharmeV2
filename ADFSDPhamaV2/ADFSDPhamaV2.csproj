@@ -79,12 +79,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin_User.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_User.xaml.cs">
+      <DependentUpon>Admin_User.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -97,46 +104,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Customer.cs">
-      <DependentUpon>DBPharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DBPharma.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBPharma.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DBPharma.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBPharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DBPharma.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBPharma.edmx</DependentUpon>
+      <DependentUpon>Pharma.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\EnumRole.cs">
-      <DependentUpon>DBPharma.tt</DependentUpon>
+      <DependentUpon>Pharma.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Medication.cs">
-      <DependentUpon>DBPharma.tt</DependentUpon>
+      <DependentUpon>Pharma.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Order.cs">
-      <DependentUpon>DBPharma.tt</DependentUpon>
+      <DependentUpon>Pharma.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Order_details.cs">
-      <DependentUpon>DBPharma.tt</DependentUpon>
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pharma.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pharma.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pharma.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pharma.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pharma.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Photo.cs">
-      <DependentUpon>DBPharma.tt</DependentUpon>
+      <DependentUpon>Pharma.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Stock.cs">
-      <DependentUpon>DBPharma.tt</DependentUpon>
+      <DependentUpon>Pharma.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Suplier.cs">
-      <DependentUpon>DBPharma.tt</DependentUpon>
+      <DependentUpon>Pharma.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Usr.cs">
-      <DependentUpon>DBPharma.tt</DependentUpon>
+      <DependentUpon>Pharma.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -155,12 +162,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\DBPharma.edmx">
+    <EntityDeploy Include="Model\Pharma.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBPharma.Designer.cs</LastGenOutput>
+      <LastGenOutput>Pharma.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\DBPharma.edmx.diagram">
-      <DependentUpon>DBPharma.edmx</DependentUpon>
+    <None Include="Model\Pharma.edmx.diagram">
+      <DependentUpon>Pharma.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -178,15 +185,15 @@
     <Content Include="images\homebg2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Model\DBPharma.Context.tt">
+    <Content Include="Model\Pharma.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBPharma.edmx</DependentUpon>
-      <LastGenOutput>DBPharma.Context.cs</LastGenOutput>
+      <DependentUpon>Pharma.edmx</DependentUpon>
+      <LastGenOutput>Pharma.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\DBPharma.tt">
+    <Content Include="Model\Pharma.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBPharma.edmx</DependentUpon>
-      <LastGenOutput>DBPharma.cs</LastGenOutput>
+      <DependentUpon>Pharma.edmx</DependentUpon>
+      <LastGenOutput>Pharma.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup />

@@ -36,5 +36,16 @@ namespace ADFSDPhamaV2
             mainWindow.Visibility = Visibility.Visible;
             this.Close();
         }
+
+        private void Menu_User_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_User admin_User = new Admin_User();
+            this.Visibility = Visibility.Hidden;
+            admin_User.Show();
+        }
+
+
+        
+
     }
 }

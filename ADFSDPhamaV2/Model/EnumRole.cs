@@ -13,7 +13,7 @@ namespace ADFSDPhamaV2.Model
     
     public enum EnumRole : int
     {
-        admin = 1,
-        user = 0
+        user = 0,
+        admin = 1
     }
 }

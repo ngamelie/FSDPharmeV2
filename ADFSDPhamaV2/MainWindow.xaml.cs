@@ -1,7 +1,9 @@
 ﻿using ADFSDPhamaV2.Model;
+using MaterialDesignThemes.Wpf.Transitions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -46,6 +48,11 @@ namespace ADFSDPhamaV2
             sb.Begin(LeftMenu);
             TbxUsername.Text = "";
             PbxPassword.Password = "";
+
+            // test a window
+            //Admin_User admin_user = new Admin_User();
+            //this.Visibility = Visibility.Hidden;
+            //admin_user.Show();
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)
@@ -55,19 +62,21 @@ namespace ADFSDPhamaV2
 
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-
-
-
-
             PharmaConn pharmaConn = new PharmaConn();
-
+            List <Usr>list = pharmaConn.Usrs.ToList();
 
             string uname = TbxUsername.Text;
             string pword = PbxPassword.Password.ToString();
 
+            Usr rs = null;
 
-            //Usr rs = pharmaConn.Usrs.Find(1, uname, pword);
-            Usr rs = pharmaConn.Usrs.Find(1);
+            foreach (Usr usr in list)
+            {
+                if(usr.email == uname && usr.password == pword)
+                {
+                    rs = usr;
+                }
+            }
 
             if (rs == null)
             {
@@ -75,12 +84,8 @@ namespace ADFSDPhamaV2
             }
             else
             {
-                Admin admin = new Admin();
-                this.Visibility = Visibility.Hidden;
-                admin.Show();
 
-                /*
-                if(rs.role == EnumRole.admin)
+                if (rs.role == EnumRole.admin)
                 {
                     Admin admin = new Admin();
                     this.Visibility = Visibility.Hidden;
@@ -94,14 +99,9 @@ namespace ADFSDPhamaV2
                 {
                     MessageBox.Show("Please contact your system administrator.");
                 }
-                */
-            }
                 
+            }
 
-
-
-
-            
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
