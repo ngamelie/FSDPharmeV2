@@ -37,18 +37,54 @@ namespace ADFSDPhamaV2
             this.Close();
         }
 
-        private void Menu_User_Click(object sender, RoutedEventArgs e)
+        private void BtnDash_Click(object sender, RoutedEventArgs e)
         {
-            Admin_User admin_User = new Admin_User();
+            Admin window = new Admin();
             this.Visibility = Visibility.Hidden;
-            admin_User.Show();
+            window.Show();
         }
 
-        private void BtnAdminMed_Click(object sender, RoutedEventArgs e)
+        private void BtnMedication_Click(object sender, RoutedEventArgs e)
         {
-            Admin_Medication admin_Medication = new Admin_Medication();
+            Admin_Medication window = new Admin_Medication();
             this.Visibility = Visibility.Hidden;
-            admin_Medication.Show();
+            window.Show();
         }
+
+        private void BtnSupplier_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Supplier window = new Admin_Supplier();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
+        private void BtnPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Photo window = new Admin_Photo();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
+        private void BtnStock_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Stock window = new Admin_Stock();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
+        private void BtnCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Customer window = new Admin_Customer();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
+        private void BtnUser_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_User window = new Admin_User();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
     }
 }

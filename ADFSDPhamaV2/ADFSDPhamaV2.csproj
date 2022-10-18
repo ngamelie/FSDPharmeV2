@@ -75,6 +75,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Admin_Customer.xaml.cs">
+      <DependentUpon>Admin_Customer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_Photo.xaml.cs">
+      <DependentUpon>Admin_Photo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin_Stock.xaml.cs">
       <DependentUpon>Admin_Stock.xaml</DependentUpon>
     </Compile>
@@ -82,7 +88,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin_Customer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin_Medication.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin_Photo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin_Supplier.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -99,6 +117,9 @@
     </Compile>
     <Compile Include="Admin_Medication.xaml.cs">
       <DependentUpon>Admin_Medication.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_Supplier.xaml.cs">
+      <DependentUpon>Admin_Supplier.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin_User.xaml.cs">
       <DependentUpon>Admin_User.xaml</DependentUpon>

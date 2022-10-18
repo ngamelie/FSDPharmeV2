@@ -173,7 +173,7 @@
                     <TextBlock Text="Main Menu"
                                Style="{StaticResource menuTitle}" />
 
-                    <Button Style="{DynamicResource menuButton}">
+                    <Button Style="{DynamicResource menuButton}" Click="BtnDash_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -182,7 +182,7 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}">
+                    <Button Style="{DynamicResource menuButton}"  Click="BtnMedication_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="PillMultiple"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -191,7 +191,7 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Menu_User"
+                    <Button x:Name="Menu_User" Click="BtnUser_Click"
                             Style="{DynamicResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountMultipleCheckOutline"
@@ -201,7 +201,7 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}">
+                    <Button Style="{DynamicResource menuButton}"  Click="BtnSupplier_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Reproduction"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -210,8 +210,36 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
+                    <Button Style="{DynamicResource menuButton}" Click="BtnPhoto_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Reproduction"
+                                                     Style="{StaticResource menuButtonIcon}"
+                                                     Height="23" />
+                            <TextBlock Text="Photo" 
+                                       Style="{StaticResource menuButtonText}"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{DynamicResource menuButton}" Click="BtnCustomer_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Reproduction"
+                                                     Style="{StaticResource menuButtonIcon}"
+                                                     Height="23" />
+                            <TextBlock Text="Customer"
+                                       Style="{StaticResource menuButtonText}"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{DynamicResource menuButton}" Click="BtnStock_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Reproduction"
+                                                     Style="{StaticResource menuButtonIcon}"
+                                                     Height="23" />
+                            <TextBlock Text="Stock"
+                                       Style="{StaticResource menuButtonText}"></TextBlock>
+                        </StackPanel>
+                    </Button>
+
                     <Button Style="{DynamicResource menuButton}"
-                            Margin="15 270 15 0"
+                            Margin="15 120 15 0"
                             Click="BtnLogout_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Logout"
@@ -243,7 +271,7 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock x:Name="Tbl_User"
+                    <TextBlock x:Name="Tbl_Title"
                                Text="Medication"
                                Width="283"
                                FontSize="20"
@@ -320,14 +348,14 @@
                                  materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
                                  IsReadOnly="True" />
 
-                        <Label Content="Role:"
+                        <Label Content="Medication:"
                                Grid.Row="1"
                                Grid.Column="0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Width="80" />
 
-                        <ComboBox x:Name="Combo_Role"
+                        <ComboBox x:Name="Combo_Medication" SelectionChanged="Combo_Medication_SelectionChanged"
                                   Grid.Row="1"
                                   Grid.Column="1"
                                   Height="25"
@@ -336,14 +364,14 @@
                                   VerticalAlignment="Center"
                                   materialDesign:TextFieldAssist.UnderlineBrush="#a36800" />
 
-                        <Label Content="Email:"
+                        <Label Content="Quantity:"
                                Grid.Row="0"
                                Grid.Column="2"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Width="80" />
 
-                        <TextBox x:Name="Tbx_email"
+                        <TextBox x:Name="Tbx_quantity"
                                  Grid.Row="0"
                                  Grid.Column="3"
                                  Height="25"
@@ -353,22 +381,7 @@
                                  materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
                                  VerticalAlignment="Center" />
 
-                        <Label Content="Password:"
-                               Grid.Row="1"
-                               Grid.Column="2"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Width="80" />
 
-                        <TextBox x:Name="Tbx_password"
-                                 Grid.Row="1"
-                                 Grid.Column="3"
-                                 Height="25"
-                                 Width="200"
-                                 HorizontalAlignment="Left"
-                                 TextWrapping="Wrap"
-                                 materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
-                                 VerticalAlignment="Center" />
                     </Grid>
                 </Border>
 
@@ -378,7 +391,7 @@
                             Width="382"
                             Margin="352,0,0,0">
 
-                    <Button x:Name="BtnAdd" 
+                    <Button x:Name="BtnAdd"
                             Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
                             RenderTransformOrigin="0.495,-1.453"
@@ -395,7 +408,8 @@
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="BtnUpdate" Margin="10"
+                    <Button x:Name="BtnUpdate"
+                            Margin="10"
                             Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
                             RenderTransformOrigin="0.495,-1.453"
@@ -435,28 +449,23 @@
                         Background="White"
                         BorderThickness="1">
 
-                    <ListView Name="LvUser"
+                    <ListView Name="LvList"
                               HorizontalAlignment="Left"
                               Height="441"
                               Margin="10,9,0,0"
                               VerticalAlignment="Top"
                               Width="700"
                               SelectionMode="Single"
-                              SelectionChanged="LvUser_SelectionChanged">
+                              SelectionChanged="LvList_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id"
                                                 Width="100"
-                                                DisplayMemberBinding="{Binding id}" />
-                                <GridViewColumn Header="Email"
+                                                DisplayMemberBinding="{Binding med}" />
+                                <GridViewColumn Header="Quantity"
                                                 Width="200"
-                                                DisplayMemberBinding="{Binding email}" />
-                                <GridViewColumn Header="Role"
-                                                Width="100"
-                                                DisplayMemberBinding="{Binding password}" />
-                                <GridViewColumn Header="Password"
-                                                Width="200"
-                                                DisplayMemberBinding="{Binding role}" />
+                                                DisplayMemberBinding="{Binding quantity}" />
+
                             </GridView>
                         </ListView.View>
                     </ListView>

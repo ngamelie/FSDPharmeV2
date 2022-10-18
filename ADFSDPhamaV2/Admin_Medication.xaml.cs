@@ -1,5 +1,6 @@
 ﻿using ADFSDPhamaV2.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -26,20 +27,24 @@ namespace ADFSDPhamaV2
             InitializeComponent();
             init();
         }
-
         private void init()
         {
-            Tbl_User.Text = "User";
+            Tbl_Title.Text = "Stock";
             BtnUpdate.IsEnabled = false;
             BtnDelete.IsEnabled = false;
-            Tbx_email.Text = "";
-            Tbx_password.Text = "";
             Tbx_id.Text = "";
-            Combo_Role.SelectedIndex = 0;
-            Combo_Role.ItemsSource = System.Enum.GetNames(typeof(EnumRole));
+            Tbx_quantity.Text = "";
+            Combo_Medication.SelectedIndex = 0;
 
             PharmaConn pharmaConn = new PharmaConn();
-            LvUser.ItemsSource = pharmaConn.Usrs.ToList();
+            ArrayList list = new ArrayList();
+            foreach (Medication med in pharmaConn.Medications.ToList())
+            {
+                list.Add(med.id);
+            }
+
+            Combo_Medication.ItemsSource = list;
+            LvList.ItemsSource = pharmaConn.Stocks.ToList();
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -54,9 +59,10 @@ namespace ADFSDPhamaV2
             this.Close();
         }
 
-        private void LvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LvList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Usr currSelected = LvUser.SelectedItem as Usr;
+            BtnAdd.IsEnabled = false;
+            Stock currSelected = LvList.SelectedItem as Stock;
             BtnUpdate.IsEnabled = (currSelected != null);
             BtnDelete.IsEnabled = (currSelected != null);
             if (currSelected == null)
@@ -65,91 +71,153 @@ namespace ADFSDPhamaV2
             }
             else
             {
-                Tbx_id.Text = currSelected.id.ToString();
-                Tbx_email.Text = currSelected.email;
-                Combo_Role.Text = currSelected.role.ToString();
-                Tbx_password.Text = currSelected.password;
+                Tbx_id.Text = currSelected.med.ToString();
+                Tbx_quantity.Text = currSelected.quantity.ToString();
+
             }
+        }
+
+        private void Combo_Medication_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BtnAdd.IsEnabled = true;
+            BtnUpdate.IsEnabled = false;
+            BtnDelete.IsEnabled = false;
+            Tbx_id.Text = "";
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            string email = Tbx_email.Text;
-            string pword = Tbx_password.Text;
-            int role = Combo_Role.SelectedIndex;
-
-            // validation
-
-            Usr usr = new Usr();
-            usr.email = email;
-            usr.password = pword;
-
-            switch (role)
+            try
             {
-                case (int)EnumRole.admin:
-                    usr.role = EnumRole.admin;
-                    break;
-                case (int)EnumRole.user:
-                    usr.role = EnumRole.user;
-                    break;
-                default:
-                    // code block
-                    break;
+                Stock stock = new Stock();
+                stock.med = int.Parse(Combo_Medication.SelectedItem.ToString());
+
+                if (int.TryParse(Tbx_quantity.Text, out int rs))
+                {
+                    stock.quantity = rs;
+                }
+
+                if (Verify(stock))
+                {
+                    PharmaConn pharmaConn = new PharmaConn();
+                    pharmaConn.Stocks.Add(stock);
+                    pharmaConn.SaveChanges();
+                }
+                else
+                {
+                    return;
+                }
+
+                init();
+                LvList.SelectedItem = null;
+                MessageBox.Show("New record created.");
             }
-
-            usr.role = EnumRole.user;
-            usr.email = "test";
-            usr.password = "123";
-            PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Usrs.Add(usr);
-            pharmaConn.SaveChanges();
-
-            init();
-            LvUser.SelectedItem = null;
-            MessageBox.Show("New user created.");
+            catch (Exception ex)
+            {
+                MessageBox.Show("Medication code already exist. You may choose the code to modify quantity.");
+            }
         }
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Usr usr = new Usr();
-            usr.email = Tbx_email.Text;
-            usr.password = Tbx_password.Text;
-            usr.id = int.Parse(Tbx_id.Text);
-
-            switch (Combo_Role.SelectedIndex)
+            try
             {
-                case (int)EnumRole.admin:
-                    usr.role = EnumRole.admin;
-                    break;
-                case (int)EnumRole.user:
-                    usr.role = EnumRole.user;
-                    break;
-                default:
-                    // code block
-                    break;
+                Stock stock = new Stock();
+                stock.med = int.Parse(Tbx_id.Text);
+                if (int.TryParse(Tbx_quantity.Text, out int rs))
+                {
+                    stock.quantity = rs;
+                }
+
+                if (Verify(stock))
+                {
+                    PharmaConn pharmaConn = new PharmaConn();
+                    pharmaConn.Stocks.AddOrUpdate(stock);
+                    pharmaConn.SaveChanges();
+                }
+                else
+                {
+                    return;
+                }
+
+                init();
+                LvList.SelectedItem = null;
+                MessageBox.Show("Information updated.");
             }
-            PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Usrs.AddOrUpdate(usr);
-            pharmaConn.SaveChanges();
-            init();
-            LvUser.SelectedItem = null;
-            MessageBox.Show("User information updated.");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
-            Usr currSelected = LvUser.SelectedItem as Usr;
-            Usr usr = new Usr { id = currSelected.id };
+            Stock currSelected = LvList.SelectedItem as Stock;
+            Stock stock = new Stock { med = currSelected.med };
             PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Usrs.Attach(usr);
-            pharmaConn.Entry(usr).State = System.Data.Entity.EntityState.Deleted;
+            pharmaConn.Stocks.Attach(stock);
+            pharmaConn.Entry(stock).State = System.Data.Entity.EntityState.Deleted;
             pharmaConn.SaveChanges();
             init();
-            LvUser.SelectedItem = null;
-            MessageBox.Show("User information updated.");
+            LvList.SelectedItem = null;
+            MessageBox.Show("Information delete.");
         }
 
+        private void BtnDash_Click(object sender, RoutedEventArgs e)
+        {
+            Admin window = new Admin();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
 
+        private void BtnMedication_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Medication window = new Admin_Medication();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
+        private void BtnSupplier_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Supplier window = new Admin_Supplier();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
+        private void BtnPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Photo window = new Admin_Photo();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
+        private void BtnStock_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Stock window = new Admin_Stock();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
+        private void BtnCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Customer window = new Admin_Customer();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
+        private void BtnUser_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_User window = new Admin_User();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
+
+        private bool Verify(Stock stock)
+        {
+            bool rs = true;
+
+            return rs;
+        }
     }
 }
 
