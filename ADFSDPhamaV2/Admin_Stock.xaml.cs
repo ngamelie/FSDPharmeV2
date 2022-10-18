@@ -115,7 +115,7 @@ namespace ADFSDPhamaV2
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Medication code already exist. You may choose the code to modify quantity."); 
+                MessageBox.Show("Item code already exist. You may choose the code to modify information.");
             }
         }
 

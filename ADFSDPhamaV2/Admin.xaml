@@ -291,7 +291,7 @@
                 </Canvas>
                 <StackPanel Orientation="Horizontal"
                             Margin="0,67,0,494">
-                    <TextBlock Text="Medication"
+                    <TextBlock Text="Dashboard"
                                Width="586"
                                FontSize="20"
                                FontWeight="SemiBold"
