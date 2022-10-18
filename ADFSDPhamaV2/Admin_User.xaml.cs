@@ -99,12 +99,16 @@ namespace ADFSDPhamaV2
                     break;
             }
 
-            usr.role = EnumRole.user;
-            usr.email = "test";
-            usr.password = "123";
-            PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Usrs.Add(usr);
-            pharmaConn.SaveChanges();
+            if (Verify(usr))
+            {
+                PharmaConn pharmaConn = new PharmaConn();
+                pharmaConn.Usrs.Add(usr);
+                pharmaConn.SaveChanges();
+            }
+            else
+            {
+                return;
+            }
 
             init();
             LvUser.SelectedItem = null;
@@ -130,9 +134,18 @@ namespace ADFSDPhamaV2
                     // code block
                     break;
             }
-            PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Usrs.AddOrUpdate(usr);
-            pharmaConn.SaveChanges();
+
+            if (Verify(usr))
+            {
+                PharmaConn pharmaConn = new PharmaConn();
+                pharmaConn.Usrs.AddOrUpdate(usr);
+                pharmaConn.SaveChanges();
+            }
+            else
+            {
+                return;
+            }
+
             init();
             LvUser.SelectedItem = null;
             MessageBox.Show("User information updated.");
@@ -151,6 +164,46 @@ namespace ADFSDPhamaV2
             MessageBox.Show("User information updated.");
         }
 
+        private void BtnDash_Click(object sender, RoutedEventArgs e)
+        {
+            Admin window = new Admin();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
+        }
 
+        private void BtnMedication_Click(object sender, RoutedEventArgs e)
+        {
+            //Admin_Medication window = new Admin_Medication();
+            //this.Visibility = Visibility.Hidden;
+            //window.Show();
+        }
+
+        private void BtnSupplier_Click(object sender, RoutedEventArgs e)
+        {
+            //Admin_Supplier window = new Admin_Supplier();
+            //this.Visibility = Visibility.Hidden;
+            //window.Show();
+        }
+
+        private void BtnStock_Click(object sender, RoutedEventArgs e)
+        {
+            //Admin_Stock window = new Admin_Stock();
+            //this.Visibility = Visibility.Hidden;
+           // window.Show();
+        }
+
+        private void BtnCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            //Admin_Customer window = new Admin_Customer();
+            //this.Visibility = Visibility.Hidden;
+            //window.Show();
+        }
+
+        private bool Verify(Usr usr)
+        {
+            bool rs = true;
+
+            return rs;
+        }
     }
 }
