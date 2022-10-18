@@ -26,6 +26,7 @@ namespace ADFSDPhamaV2
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string username { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -65,6 +66,7 @@ namespace ADFSDPhamaV2
             PharmaConn pharmaConn = new PharmaConn();
             List <Usr>list = pharmaConn.Usrs.ToList();
 
+            username = TbxUsername.Text;
             string uname = TbxUsername.Text;
             string pword = PbxPassword.Password.ToString();
 
@@ -93,7 +95,9 @@ namespace ADFSDPhamaV2
                 }
                 else if (rs.role == EnumRole.user)
                 {
-
+                    User user = new User(uname);
+                    this.Visibility = Visibility.Hidden;
+                    user.Show();
                 }
                 else
                 {
