@@ -161,7 +161,7 @@ namespace ADFSDPhamaV2
             pharmaConn.SaveChanges();
             init();
             LvUser.SelectedItem = null;
-            MessageBox.Show("User information updated.");
+            MessageBox.Show("User information delete.");
         }
 
         private void BtnDash_Click(object sender, RoutedEventArgs e)
@@ -187,9 +187,9 @@ namespace ADFSDPhamaV2
 
         private void BtnStock_Click(object sender, RoutedEventArgs e)
         {
-            //Admin_Stock window = new Admin_Stock();
-            //this.Visibility = Visibility.Hidden;
-           // window.Show();
+            Admin_Stock window = new Admin_Stock();
+            this.Visibility = Visibility.Hidden;
+            window.Show();
         }
 
         private void BtnCustomer_Click(object sender, RoutedEventArgs e)
