@@ -238,7 +238,7 @@
                         </StackPanel>
                     </Button>
                     <Button Style="{DynamicResource menuButton}"
-                            Margin="15 270 15 0"
+                            Margin="15 120 15 0"
                             Click="BtnLogout_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Logout"
