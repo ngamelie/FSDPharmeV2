@@ -44,8 +44,11 @@ namespace ADFSDPhamaV2
             admin_User.Show();
         }
 
-
-        
-
+        private void BtnAdminMed_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Medication admin_Medication = new Admin_Medication();
+            this.Visibility = Visibility.Hidden;
+            admin_Medication.Show();
+        }
     }
 }
