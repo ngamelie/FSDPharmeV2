@@ -87,6 +87,9 @@
     <Compile Include="Admin_Stock.xaml.cs">
       <DependentUpon>Admin_Stock.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Photo.cs">
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
     <Compile Include="PharmaUser.xaml.cs">
       <DependentUpon>PharmaUser.xaml</DependentUpon>
     </Compile>
@@ -177,9 +180,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Pharma.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Photo.cs">
-      <DependentUpon>Pharma.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Stock.cs">
       <DependentUpon>Pharma.tt</DependentUpon>

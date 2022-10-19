@@ -34,7 +34,10 @@ namespace ADFSDPhamaV2
             Cbo_Customer.SelectedValuePath = "id";
             Cbo_Customer.SelectedIndex = -1;
 
-
+            Cbo_Medication.ItemsSource = pharmaConn.Medications.ToList();
+            Cbo_Medication.DisplayMemberPath = "name";
+            Cbo_Medication.SelectedValuePath = "id";
+            Cbo_Medication.SelectedIndex = -1;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
