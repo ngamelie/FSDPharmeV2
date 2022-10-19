@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ADFSDPhamaV2.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,12 @@ namespace ADFSDPhamaV2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            PharmaConn pharmaConn = new PharmaConn();
+            Cbo_Customer.ItemsSource = pharmaConn.Customers.ToList();
+            Cbo_Customer.DisplayMemberPath = "name";
+            Cbo_Customer.SelectedValuePath = "id";
+            Cbo_Customer.SelectedIndex = -1;
+
 
         }
 
@@ -41,6 +48,19 @@ namespace ADFSDPhamaV2
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             mainWindow.Visibility = Visibility.Visible;
             this.Close();
+        }
+
+        private void Cbo_Customer_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            PharmaConn pharmaConn = new PharmaConn();
+            int id = int.Parse(Cbo_Customer.SelectedValue.ToString());
+            Customer customer = pharmaConn.Customers.Find(id);
+
+            Tbx_id.Text = customer.id.ToString();
+            Tbx_name.Text = customer.name.ToString();
+            Tbx_phone.Text = customer.phone.ToString();
+            Tbx_email.Text = customer.email.ToString();
+            Tbx_address.Text = customer.address.ToString();
         }
     }
 }

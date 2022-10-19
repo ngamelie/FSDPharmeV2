@@ -141,7 +141,7 @@
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
-                              Margin="0,24,0,0" />
+                              Margin="0,24,0,0" SelectionChanged="Cbo_Customer_SelectionChanged_1" />
 
                     <Button x:Name="BtnSave"
                             Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"

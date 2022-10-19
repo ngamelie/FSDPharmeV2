@@ -29,7 +29,7 @@ namespace ADFSDPhamaV2
         }
         private void init()
         {
-            Tbl_Title.Text = "Stock";
+            Tbl_Title.Text = "Medication";
             BtnUpdate.IsEnabled = false;
             BtnDelete.IsEnabled = false;
             Tbx_id.Text = "";

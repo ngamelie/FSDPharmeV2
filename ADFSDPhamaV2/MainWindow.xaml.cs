@@ -51,7 +51,7 @@ namespace ADFSDPhamaV2
             PbxPassword.Password = "";
 
             // test a window
-            //Admin_User window = new Admin_User();
+            //PharmaUser window = new PharmaUser("zeen@gmail.com");
             //this.Visibility = Visibility.Hidden;
             //window.Show();
         }
@@ -95,16 +95,10 @@ namespace ADFSDPhamaV2
                 }
                 else if (rs.role == EnumRole.user)
                 {
-                    //PharmaUser pharmauser = new PharmaUser(uname);
-                    //this.Visibility = Visibility.Hidden;
-                    //pharmauser.Show();
-
-                    Test test = new Test();
+                    PharmaUser pharmauser = new PharmaUser(uname);
                     this.Visibility = Visibility.Hidden;
-                    test.Show();
-                    //User user = new User();
-                    //this.Visibility = Visibility.Hidden;
-                    //user.Show();
+                    pharmauser.Show();
+
                 }
                 else
                 {
