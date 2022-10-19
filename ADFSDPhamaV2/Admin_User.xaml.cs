@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +17,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ADFSDPhamaV2
@@ -81,7 +85,6 @@ namespace ADFSDPhamaV2
             int role = Combo_Role.SelectedIndex;
 
             // validation
-
             Usr usr = new Usr();
             usr.email = email;
             usr.password = pword;
@@ -99,7 +102,10 @@ namespace ADFSDPhamaV2
                     break;
             }
 
-            if (Verify(usr))
+
+
+            //if (Verify(usr))
+            if (AreUsrInputsValid())
             {
                 PharmaConn pharmaConn = new PharmaConn();
                 pharmaConn.Usrs.Add(usr);
@@ -135,7 +141,8 @@ namespace ADFSDPhamaV2
                     break;
             }
 
-            if (Verify(usr))
+            //if (Verify(usr))
+            if(AreUsrInputsValid())
             {
                 PharmaConn pharmaConn = new PharmaConn();
                 pharmaConn.Usrs.AddOrUpdate(usr);
@@ -219,5 +226,120 @@ namespace ADFSDPhamaV2
 
             return rs;
         }
+
+
+        private bool AreUsrInputsValid()
+        {
+            string email = Tbx_email.Text;
+            string pword = Tbx_password.Text;
+
+            if (!IsUsrEmailValid(email, out string errorEmail))
+            {
+                MessageBox.Show(this, errorEmail, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!IsUsrPwordValid(pword, out string errorPword))
+            {
+                MessageBox.Show(this, errorPword, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }    
+            if(!IsUsrEmailUnique( email, out string errorEmailNotUnique))
+            {
+                MessageBox.Show(this, errorEmailNotUnique, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
+
+
+        // Usr email validate using MailAddress Class
+        private bool IsUsrEmailValid(string email, out string errorEmail)
+        {
+            var valid = true;
+            try
+            {
+                var emailAddress =new MailAddress(email); 
+            }
+            catch
+            {
+                valid = false;
+                errorEmail = @"Invalid Email. Please input a valid Email!";
+            }
+            errorEmail = null;
+            return valid;
+            
+            // Use Regex to validate email
+            /*
+            if (Regex.IsMatch(email, @"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$"))
+            {
+                errorEmail = null;
+                return true;
+            }
+            errorEmail = @"Invalid Email. Please input a valid Email!";
+            return false;
+            */
+
+        }
+
+        // Usr password validate
+        private bool IsUsrPwordValid(string password, out string errorPword)
+        {
+            //password length 3-30 characters long,contain uppercase and lowercase letters numbers and !@#$*
+            if (Regex.IsMatch(password, @"^[a-zA-Z0-9\!\@\#\$\*]{3,30}$"))
+            {
+                errorPword = null;
+                return true;
+            }
+            errorPword = @"Invalid Password. Your password must be 3-30 characters long, can contain uppercase and lowercase letters numbers and !@#$* ";
+            return false;
+
+        }
+
+        // Usr email unique validate
+        
+        private bool IsUsrEmailUnique(string email, out string errorEmailNotUnique)
+        {
+            //TODO
+            
+            /*if (email not exist)
+            {
+                errorEmailNotUnique = null;
+                return true;
+            }
+            errorEmailNotUnique = @"This email address is already being used.";
+            return false;
+            */
+            PharmaConn pharmaConn = new PharmaConn();
+            List <Usr>list = pharmaConn.Usrs.ToList();
+
+            string uemail = Tbx_email.Text;
+  
+            Usr rs = null;
+
+            foreach (Usr usr in list)
+            {
+                if(usr.email == uemail)
+                {
+                    rs = usr;
+                }
+            }
+
+            if (rs == null) 
+            {
+                errorEmailNotUnique = null;
+                return true;
+            }
+            else
+            {
+                errorEmailNotUnique = $"Email address:{uemail} is already used.";
+                return false;
+
+            }
+        }
+        
+
+
     }
+
 }
