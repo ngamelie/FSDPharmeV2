@@ -48,7 +48,7 @@ namespace ADFSDPhamaV2
 
             Cmb_photo.ItemsSource = pharmaConn.Photos.ToList();
             Cmb_photo.SelectedValuePath = "id";
-            Cmb_photo.DisplayMemberPath = "id";
+            Cmb_photo.DisplayMemberPath = "name";
 
             LvList.ItemsSource = pharmaConn.Medications.ToList();
         }

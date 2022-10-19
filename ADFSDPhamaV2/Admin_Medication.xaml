@@ -508,17 +508,17 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id"
-                                                Width="100"                                 DisplayMemberBinding="{Binding id}" />
+                                                Width="60"                                 DisplayMemberBinding="{Binding id}" />
                                 <GridViewColumn Header="Name"
-                                                Width="100"                                DisplayMemberBinding="{Binding name}" />
+                                                Width="150"                                DisplayMemberBinding="{Binding name}" />
                                 <GridViewColumn Header="Description"
-                                                Width="150"                                DisplayMemberBinding="{Binding description}" />
+                                                Width="200"                                DisplayMemberBinding="{Binding description}" />
                                 <GridViewColumn Header="Unit"
                                                 Width="100"                                DisplayMemberBinding="{Binding unit}" />
                                 <GridViewColumn Header="Suplier Id"
-                                                Width="120"                                DisplayMemberBinding="{Binding suplier_id}" />
+                                                Width="100"                                DisplayMemberBinding="{Binding suplier_id}" />
                                 <GridViewColumn Header="Photo Id"
-                                                Width="120"                                DisplayMemberBinding="{Binding photo_id}" />
+                                                Width="100"                                DisplayMemberBinding="{Binding photo_id}" />
                                 
                             </GridView>
                         </ListView.View>
