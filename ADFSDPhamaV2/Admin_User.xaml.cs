@@ -142,7 +142,7 @@ namespace ADFSDPhamaV2
             }
 
             //if (Verify(usr))
-            if(AreUsrInputsValid())
+            if (AreUsrInputsValid())
             {
                 PharmaConn pharmaConn = new PharmaConn();
                 pharmaConn.Usrs.AddOrUpdate(usr);
@@ -243,8 +243,8 @@ namespace ADFSDPhamaV2
             {
                 MessageBox.Show(this, errorPword, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
-            }    
-            if(!IsUsrEmailUnique( email, out string errorEmailNotUnique))
+            }
+            if (!IsUsrEmailUnique(email, out string errorEmailNotUnique))
             {
                 MessageBox.Show(this, errorEmailNotUnique, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -259,7 +259,7 @@ namespace ADFSDPhamaV2
             var valid = true;
             try
             {
-                var emailAddress =new MailAddress(email); 
+                var emailAddress = new MailAddress(email);
             }
             catch
             {
@@ -268,7 +268,7 @@ namespace ADFSDPhamaV2
             }
             errorEmail = null;
             return valid;
-            
+
             // Use Regex to validate email
             /*
             if (Regex.IsMatch(email, @"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$"))
@@ -297,35 +297,25 @@ namespace ADFSDPhamaV2
         }
 
         // Usr email unique validate
-        
+
         private bool IsUsrEmailUnique(string email, out string errorEmailNotUnique)
         {
-            //TODO
-            
-            /*if (email not exist)
-            {
-                errorEmailNotUnique = null;
-                return true;
-            }
-            errorEmailNotUnique = @"This email address is already being used.";
-            return false;
-            */
             PharmaConn pharmaConn = new PharmaConn();
-            List <Usr>list = pharmaConn.Usrs.ToList();
+            List<Usr> list = pharmaConn.Usrs.ToList();
 
             string uemail = Tbx_email.Text;
-  
+
             Usr rs = null;
 
             foreach (Usr usr in list)
             {
-                if(usr.email == uemail)
+                if (usr.email == uemail)
                 {
                     rs = usr;
                 }
             }
 
-            if (rs == null) 
+            if (rs == null)
             {
                 errorEmailNotUnique = null;
                 return true;
@@ -337,7 +327,7 @@ namespace ADFSDPhamaV2
 
             }
         }
-        
+
 
 
     }
