@@ -1,10 +1,9 @@
 ﻿using ADFSDPhamaV2.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,11 +18,11 @@ using System.Windows.Shapes;
 namespace ADFSDPhamaV2
 {
     /// <summary>
-    /// Interaction logic for Admin_User.xaml
+    /// Interaction logic for Admin_Customer.xaml
     /// </summary>
-    public partial class Admin_User : Window
+    public partial class Admin_Customer : Window
     {
-        public Admin_User()
+        public Admin_Customer()
         {
             InitializeComponent();
             init();
@@ -31,17 +30,17 @@ namespace ADFSDPhamaV2
 
         private void init()
         {
-            Tbl_User.Text = "User";
+            Tbl_Title.Text = "Customer";
             BtnUpdate.IsEnabled = false;
             BtnDelete.IsEnabled = false;
-            Tbx_email.Text = "";
-            Tbx_password.Text = "";
             Tbx_id.Text = "";
-            Combo_Role.SelectedIndex = 0;
-            Combo_Role.ItemsSource = System.Enum.GetNames(typeof(EnumRole));
+            Tbx_name.Text = "";
+            Tbx_email.Text = "";
+            Tbx_phone.Text = "";
+            Tbx_address.Text = "";
 
             PharmaConn pharmaConn = new PharmaConn();
-            LvUser.ItemsSource = pharmaConn.Usrs.ToList();
+            LvList.ItemsSource = pharmaConn.Customers.ToList();
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -56,9 +55,10 @@ namespace ADFSDPhamaV2
             this.Close();
         }
 
-        private void LvUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LvList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Usr currSelected = LvUser.SelectedItem as Usr;
+            //BtnAdd.IsEnabled = false;
+            Customer currSelected = LvList.SelectedItem as Customer;
             BtnUpdate.IsEnabled = (currSelected != null);
             BtnDelete.IsEnabled = (currSelected != null);
             if (currSelected == null)
@@ -68,101 +68,90 @@ namespace ADFSDPhamaV2
             else
             {
                 Tbx_id.Text = currSelected.id.ToString();
+                Tbx_name.Text = currSelected.name;
                 Tbx_email.Text = currSelected.email;
-                Combo_Role.Text = currSelected.role.ToString();
-                Tbx_password.Text = currSelected.password;
+                Tbx_phone.Text = currSelected.phone;
+                Tbx_address.Text = currSelected.address;
             }
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            string email = Tbx_email.Text;
-            string pword = Tbx_password.Text;
-            int role = Combo_Role.SelectedIndex;
-
-            // validation
-
-            Usr usr = new Usr();
-            usr.email = email;
-            usr.password = pword;
-
-            switch (role)
+            try
             {
-                case (int)EnumRole.admin:
-                    usr.role = EnumRole.admin;
-                    break;
-                case (int)EnumRole.user:
-                    usr.role = EnumRole.user;
-                    break;
-                default:
-                    // code block
-                    break;
-            }
+                Customer customer = new Customer();
 
-            if (Verify(usr))
-            {
-                PharmaConn pharmaConn = new PharmaConn();
-                pharmaConn.Usrs.Add(usr);
-                pharmaConn.SaveChanges();
-            }
-            else
-            {
-                return;
-            }
+                customer.name = Tbx_name.Text;
+                customer.email = Tbx_email.Text;
+                customer.phone = Tbx_phone.Text;
+                customer.address = Tbx_address.Text;
 
-            init();
-            LvUser.SelectedItem = null;
-            MessageBox.Show("New user created.");
+                if (Verify(customer))
+                {
+                    PharmaConn pharmaConn = new PharmaConn();
+                    pharmaConn.Customers.Add(customer);
+                    pharmaConn.SaveChanges();
+                }
+                else
+                {
+                    return;
+                }
+
+                init();
+                LvList.SelectedItem = null;
+                MessageBox.Show("New record created.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Item code already exist. You may choose the code to modify information.");
+            }
         }
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Usr usr = new Usr();
-            usr.email = Tbx_email.Text;
-            usr.password = Tbx_password.Text;
-            usr.id = int.Parse(Tbx_id.Text);
-
-            switch (Combo_Role.SelectedIndex)
+            try
             {
-                case (int)EnumRole.admin:
-                    usr.role = EnumRole.admin;
-                    break;
-                case (int)EnumRole.user:
-                    usr.role = EnumRole.user;
-                    break;
-                default:
-                    // code block
-                    break;
-            }
+                Customer customer = new Customer();
+                customer.id = int.Parse(Tbx_id.Text);
+                customer.name = Tbx_name.Text;
+                customer.email = Tbx_email.Text;
+                customer.phone = Tbx_phone.Text;
+                customer.address = Tbx_address.Text;
 
-            if (Verify(usr))
-            {
-                PharmaConn pharmaConn = new PharmaConn();
-                pharmaConn.Usrs.AddOrUpdate(usr);
-                pharmaConn.SaveChanges();
-            }
-            else
-            {
-                return;
-            }
+                if (Verify(customer))
+                {
+                    PharmaConn pharmaConn = new PharmaConn();
+                    pharmaConn.Customers.AddOrUpdate(customer);
+                    pharmaConn.SaveChanges();
+                }
+                else
+                {
+                    return;
+                }
 
-            init();
-            LvUser.SelectedItem = null;
-            MessageBox.Show("User information updated.");
+                init();
+                LvList.SelectedItem = null;
+                MessageBox.Show("Information updated.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
-            Usr currSelected = LvUser.SelectedItem as Usr;
-            Usr usr = new Usr { id = currSelected.id };
+            Customer currSelected = LvList.SelectedItem as Customer;
+            Customer customer = new Customer { id = currSelected.id };
             PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Usrs.Attach(usr);
-            pharmaConn.Entry(usr).State = System.Data.Entity.EntityState.Deleted;
+            pharmaConn.Customers.Attach(customer);
+            pharmaConn.Entry(customer).State = System.Data.Entity.EntityState.Deleted;
             pharmaConn.SaveChanges();
             init();
-            LvUser.SelectedItem = null;
-            MessageBox.Show("User information delete.");
+            LvList.SelectedItem = null;
+            MessageBox.Show("Information delete.");
         }
+
 
         private void BtnDash_Click(object sender, RoutedEventArgs e)
         {
@@ -213,11 +202,14 @@ namespace ADFSDPhamaV2
             window.Show();
         }
 
-        private bool Verify(Usr usr)
+
+        private bool Verify(Customer customer)
         {
             bool rs = true;
 
             return rs;
         }
+
+
     }
 }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="ADFSDPhamaV2.Admin_Medication"
+﻿<Window x:Class="ADFSDPhamaV2.Admin_Stock"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -172,7 +172,6 @@
 
                     <TextBlock Text="Main Menu"
                                Style="{StaticResource menuTitle}" />
-
                     <Button Style="{DynamicResource menuButton}" Click="BtnDash_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard"

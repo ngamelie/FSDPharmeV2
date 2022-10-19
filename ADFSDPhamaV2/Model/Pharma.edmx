@@ -54,9 +54,9 @@
         </EntityType>
         <EntityType Name="Stock">
           <Key>
-            <PropertyRef Name="medication_id" />
+            <PropertyRef Name="med" />
           </Key>
-          <Property Name="medication_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="med" Type="int" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Suplier">
@@ -158,7 +158,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Stock">
-              <PropertyRef Name="medication_id" />
+              <PropertyRef Name="med" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -265,9 +265,9 @@
         </EntityType>
         <EntityType Name="Stock">
           <Key>
-            <PropertyRef Name="medication_id" />
+            <PropertyRef Name="med" />
           </Key>
-          <Property Name="medication_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="med" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Medication" Relationship="Self.FK_stock_medication" FromRole="Stock" ToRole="Medication" />
         </EntityType>
@@ -348,7 +348,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Stock">
-              <PropertyRef Name="medication_id" />
+              <PropertyRef Name="med" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -376,7 +376,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="pharmaConn" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PharmaConn" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Medications" EntityType="Self.Medication" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -423,7 +423,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="pharmaModelStoreContainer" CdmEntityContainer="pharmaConn">
+        <EntityContainerMapping StorageEntityContainer="pharmaModelStoreContainer" CdmEntityContainer="PharmaConn">
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="pharmaModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
@@ -478,7 +478,7 @@
           <EntitySetMapping Name="Stocks">
             <EntityTypeMapping TypeName="pharmaModel.Stock">
               <MappingFragment StoreEntitySet="Stock">
-                <ScalarProperty Name="medication_id" ColumnName="medication_id" />
+                <ScalarProperty Name="med" ColumnName="med" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>

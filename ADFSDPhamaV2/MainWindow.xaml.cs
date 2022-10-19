@@ -51,9 +51,9 @@ namespace ADFSDPhamaV2
             PbxPassword.Password = "";
 
             // test a window
-            //Admin_User admin_user = new Admin_User();
+            //Admin_User window = new Admin_User();
             //this.Visibility = Visibility.Hidden;
-            //admin_user.Show();
+            //window.Show();
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)
@@ -98,6 +98,9 @@ namespace ADFSDPhamaV2
                     PharmaUser pharmauser = new PharmaUser(uname);
                     this.Visibility = Visibility.Hidden;
                     pharmauser.Show();
+                    User user = new User();
+                    this.Visibility = Visibility.Hidden;
+                    user.Show();
                 }
                 else
                 {

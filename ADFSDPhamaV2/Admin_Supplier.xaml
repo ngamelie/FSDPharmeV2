@@ -1,4 +1,4 @@
-﻿<Window x:Class="ADFSDPhamaV2.Admin_Medication"
+﻿<Window x:Class="ADFSDPhamaV2.Admin_Supplier"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -172,7 +172,6 @@
 
                     <TextBlock Text="Main Menu"
                                Style="{StaticResource menuTitle}" />
-
                     <Button Style="{DynamicResource menuButton}" Click="BtnDash_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard"
@@ -348,32 +347,68 @@
                                  materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
                                  IsReadOnly="True" />
 
-                        <Label Content="Medication:"
+                        <Label Content="Email:"
                                Grid.Row="1"
                                Grid.Column="0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Width="80" />
 
-                        <ComboBox x:Name="Combo_Medication" SelectionChanged="Combo_Medication_SelectionChanged"
-                                  Grid.Row="1"
-                                  Grid.Column="1"
-                                  Height="25"
-                                  Width="200"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Center"
-                                  materialDesign:TextFieldAssist.UnderlineBrush="#a36800" />
+                        <TextBox x:Name="Tbx_email"
+                                 Grid.Column="1"
+                                 Grid.Row="1"
+                                 Height="25"
+                                 Width="200"
+                                 HorizontalAlignment="Left"
+                                 TextWrapping="Wrap"
+                                 VerticalAlignment="Center"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
+                                 />
 
-                        <Label Content="Quantity:"
+                        <Label Content="Name:"
                                Grid.Row="0"
                                Grid.Column="2"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Width="80" />
 
-                        <TextBox x:Name="Tbx_quantity"
+                        <TextBox x:Name="Tbx_name"
                                  Grid.Row="0"
                                  Grid.Column="3"
+                                 Height="25"
+                                 Width="200"
+                                 HorizontalAlignment="Left"
+                                 TextWrapping="Wrap"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
+                                 VerticalAlignment="Center" />
+
+                        <Label Content="Phone:"
+                               Grid.Row="1"
+                               Grid.Column="2"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Width="80" />
+
+                        <TextBox x:Name="Tbx_phone"
+                                 Grid.Row="1"
+                                 Grid.Column="3"
+                                 Height="25"
+                                 Width="200"
+                                 HorizontalAlignment="Left"
+                                 TextWrapping="Wrap"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
+                                 VerticalAlignment="Center" />
+
+                        <Label Content="Address:"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Width="80" />
+
+                        <TextBox x:Name="Tbx_address"
+                                 Grid.Row="3"
+                                 Grid.Column="1"
                                  Height="25"
                                  Width="200"
                                  HorizontalAlignment="Left"
@@ -460,11 +495,20 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id"
+                                                Width="80"
+                                                DisplayMemberBinding="{Binding id}" />
+                                <GridViewColumn Header="Name"
                                                 Width="100"
-                                                DisplayMemberBinding="{Binding med}" />
-                                <GridViewColumn Header="Quantity"
-                                                Width="200"
-                                                DisplayMemberBinding="{Binding quantity}" />
+                                                DisplayMemberBinding="{Binding name}" />
+                                <GridViewColumn Header="Email"
+                                                Width="150"
+                                                DisplayMemberBinding="{Binding email}" />
+                                <GridViewColumn Header="Phone"
+                                                Width="150"
+                                                DisplayMemberBinding="{Binding phone}" />
+                                <GridViewColumn Header="Address"
+                                                Width="250"
+                                                DisplayMemberBinding="{Binding address}" />
 
                             </GridView>
                         </ListView.View>
@@ -476,3 +520,4 @@
     </Border>
 
 </Window>
+

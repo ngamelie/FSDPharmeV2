@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace ADFSDPhamaV2
 {
     /// <summary>
-    /// Interaction logic for Admin.xaml
+    /// Interaction logic for Admin_Photo.xaml
     /// </summary>
-    public partial class Admin : Window
+    public partial class Admin_Photo : Window
     {
-        public Admin()
+        public Admin_Photo()
         {
             InitializeComponent();
         }
@@ -85,6 +85,8 @@ namespace ADFSDPhamaV2
             this.Visibility = Visibility.Hidden;
             window.Show();
         }
+
+
 
     }
 }

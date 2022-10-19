@@ -14,7 +14,7 @@ namespace ADFSDPhamaV2.Model
     
     public partial class Stock
     {
-        public int medication_id { get; set; }
+        public int med { get; set; }
         public int quantity { get; set; }
     
         public virtual Medication Medication { get; set; }

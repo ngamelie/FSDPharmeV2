@@ -15,14 +15,15 @@ using System.Windows.Shapes;
 namespace ADFSDPhamaV2
 {
     /// <summary>
-    /// Interaction logic for Admin.xaml
+    /// Interaction logic for User.xaml
     /// </summary>
-    public partial class Admin : Window
+    public partial class User : Window
     {
-        public Admin()
+        public User()
         {
             InitializeComponent();
         }
+
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -85,6 +86,8 @@ namespace ADFSDPhamaV2
             this.Visibility = Visibility.Hidden;
             window.Show();
         }
+
+
 
     }
 }
