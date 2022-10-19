@@ -141,7 +141,7 @@
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
-                              Margin="0,24,0,0" SelectionChanged="Cbo_Customer_SelectionChanged_1" />
+                              Margin="0,24,0,0" SelectionChanged="Cbo_Customer_SelectionChanged" />
 
                     <Grid Grid.Row="1"
                           Grid.Column="2">
@@ -380,13 +380,6 @@
                                            Margin="8 0 0 0" />
                             </StackPanel>
                         </Button>
-
-
-
-
-
-
-
                     </Grid>
 
                     <Border Grid.Row="1"
@@ -410,9 +403,12 @@
                             </ListView.ContextMenu>
                             <ListView.View>
                                 <GridView>
+                                    <GridViewColumn Header="ID"
+                                                    Width="100"
+                                                    DisplayMemberBinding="{Binding medication}" />
                                     <GridViewColumn Header="Medication"
                                                     Width="150"
-                                                    DisplayMemberBinding="{Binding medication}" />
+                                                    DisplayMemberBinding="{Binding Medication1.name}" />
                                     <GridViewColumn Header="Price"
                                                     Width="150"
                                                     DisplayMemberBinding="{Binding price}" />

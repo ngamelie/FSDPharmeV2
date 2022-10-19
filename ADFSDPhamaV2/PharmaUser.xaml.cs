@@ -57,6 +57,8 @@ namespace ADFSDPhamaV2
             Tbx_phone.Text = "";
             Tbx_name.Text = "";
             Tbx_id.Text = "";
+            itemList.Clear();
+            LvList.ItemsSource = null;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -72,17 +74,21 @@ namespace ADFSDPhamaV2
             this.Close();
         }
 
-        private void Cbo_Customer_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void Cbo_Customer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PharmaConn pharmaConn = new PharmaConn();
-            int id = int.Parse(Cbo_Customer.SelectedValue.ToString());
-            Customer customer = pharmaConn.Customers.Find(id);
+            if(Cbo_Customer.SelectedIndex != -1)
+            {
+                PharmaConn pharmaConn = new PharmaConn();
+                int id = int.Parse(Cbo_Customer.SelectedValue.ToString());
+                Customer customer = pharmaConn.Customers.Find(id);
 
-            Tbx_id.Text = customer.id.ToString();
-            Tbx_name.Text = customer.name.ToString();
-            Tbx_phone.Text = customer.phone.ToString();
-            Tbx_email.Text = customer.email.ToString();
-            Tbx_address.Text = customer.address.ToString();
+                Tbx_id.Text = customer.id.ToString();
+                Tbx_name.Text = customer.name.ToString();
+                Tbx_phone.Text = customer.phone.ToString();
+                Tbx_email.Text = customer.email.ToString();
+                Tbx_address.Text = customer.address.ToString();
+            }
+
         }
 
         private void BtnDeleteTask_Click(object sender, RoutedEventArgs e)
@@ -94,38 +100,58 @@ namespace ADFSDPhamaV2
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            Customer customer = new Customer();
-            PharmaConn pharmaConn = new PharmaConn();
-            Order order = new Order();
-
-            if(Cbo_Customer.SelectedValue == null)
+            try
             {
-                customer.phone = Tbx_phone.Text;
-                customer.email = Tbx_email.Text;
-                customer.name = Tbx_name.Text;
-                customer.address = Tbx_address.Text;
-                pharmaConn.Customers.Add(customer);
+                if(itemList.Count == 0)
+                {
+                    MessageBox.Show("Not add any medication yet.");
+                    return;
+                }
+                Customer customer = new Customer();
+                PharmaConn pharmaConn = new PharmaConn();
+                Order order = new Order();
+
+                if (Cbo_Customer.Text == "")
+                {
+                    customer.phone = Tbx_phone.Text;
+                    customer.email = Tbx_email.Text;
+                    customer.name = Tbx_name.Text;
+                    customer.address = Tbx_address.Text;
+                    if (Verify(customer))
+                    {
+                        pharmaConn.Customers.Add(customer);
+                        pharmaConn.SaveChanges();
+                        order.customer_id = customer.id;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    order.customer_id = (int)Cbo_Customer.SelectedValue;
+                }
+
+                order.user_id = currentUsr.id;
+                order.date = DateTime.Now;
+                pharmaConn.Orders.Add(order);
                 pharmaConn.SaveChanges();
 
-                order.customer_id = customer.id;
+                foreach (Order_details item in itemList)
+                {
+                    item.Medication1 = null;
+                    item.order = order.id;
+                    pharmaConn.Order_details.Add(item);
+                    pharmaConn.SaveChanges();
+                }
             }
-            else
+            catch(Exception ex)
             {
-                order.customer_id = (int)Cbo_Customer.SelectedValue;
-
+                MessageBox.Show("Check your information input.");
             }
-
-            order.user_id = currentUsr.id;
-            order.date = DateTime.Now;
-            pharmaConn.Orders.Add(order);
-            pharmaConn.SaveChanges();
-
-            foreach (Order_details item in itemList)
-            {
-                item.order = order.id;
-                pharmaConn.Order_details.Add(item);
-                pharmaConn.SaveChanges();
-            }
+            init();
+            MessageBox.Show("Information saved.");
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -133,8 +159,20 @@ namespace ADFSDPhamaV2
             try
             {
                 Order_details item = new Order_details();
-                item.medication = (int)Cbo_Medication.SelectedValue;
-                if (float.TryParse(Tbx_price.Text, out float price))
+                if (Cbo_Medication.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Choose medication please.");
+                    return;
+                }
+                else
+                {
+                    item.medication = (int)Cbo_Medication.SelectedValue;
+                    Medication medication = new Medication();
+                    medication.name = Cbo_Medication.Text;
+                    item.Medication1 = medication;
+                }
+                
+                if (Tbx_price.Text != "" && float.TryParse(Tbx_price.Text, out float price))
                 {
                     item.price = price;
                 }
@@ -144,7 +182,7 @@ namespace ADFSDPhamaV2
                     return;
                 }
 
-                if (int.TryParse(Tbx_quantity.Text, out int quantity))
+                if (Tbx_quantity.Text != "" && int.TryParse(Tbx_quantity.Text, out int quantity))
                 {
                     item.quantity = quantity;
                 }
@@ -156,6 +194,14 @@ namespace ADFSDPhamaV2
 
                 if (Verify(item))
                 {
+                    foreach(Order_details elem in itemList)
+                    {
+                        if (elem.medication == item.medication)
+                        {
+                            MessageBox.Show("You choose a same medication.");
+                            return;
+                        }
+                    }
                     itemList.Add(item);
                     LvList.ItemsSource = null;
                     LvList.ItemsSource = itemList;
@@ -166,7 +212,6 @@ namespace ADFSDPhamaV2
                 }
 
                 LvList.SelectedItem = null;
-                MessageBox.Show("Information saved.");
             }
             catch (Exception ex)
             {
@@ -177,8 +222,51 @@ namespace ADFSDPhamaV2
         private bool Verify(Order_details order_details)
         {
             bool rs = true;
-
+            if (order_details.medication == null)
+            {
+                MessageBox.Show("Medication can not be empty");
+                rs = false;
+            }
+            if (order_details.price == null)
+            {
+                MessageBox.Show("Price can not be empty");
+                rs = false;
+            }
+            if (order_details.quantity == null)
+            {
+                MessageBox.Show("Quantity can not be empty");
+                rs = false;
+            }
             return rs;
+        }
+
+        private bool Verify(Customer customer)
+        {
+            if (customer.email == "")
+            {
+                MessageBox.Show("Email can not be empty");
+                return false;
+            }
+
+            if (customer.phone == "")
+            {
+                MessageBox.Show("Phone number can not be empty");
+                return false;
+            }
+
+            if (customer.name == "")
+            {
+                MessageBox.Show("Name can not be empty");
+                return false;
+            }
+
+            if (customer.address == "")
+            {
+                MessageBox.Show("Address can not be empty");
+                return false;
+            }
+
+            return true;
         }
     }
 }
