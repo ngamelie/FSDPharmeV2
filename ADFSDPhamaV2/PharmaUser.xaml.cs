@@ -15,19 +15,19 @@ using System.Windows.Shapes;
 namespace ADFSDPhamaV2
 {
     /// <summary>
-    /// Interaction logic for User.xaml
+    /// Interaction logic for PharmaUser.xaml
     /// </summary>
-    public partial class User : Window
+    public partial class PharmaUser : Window
     {
-        public User(string username)
+        public PharmaUser(string username)
         {
             InitializeComponent();
             TblUser.Text = username;
-        }
+        }    
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

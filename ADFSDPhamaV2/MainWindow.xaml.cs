@@ -95,9 +95,9 @@ namespace ADFSDPhamaV2
                 }
                 else if (rs.role == EnumRole.user)
                 {
-                    User user = new User(uname);
+                    PharmaUser pharmauser = new PharmaUser(uname);
                     this.Visibility = Visibility.Hidden;
-                    user.Show();
+                    pharmauser.Show();
                 }
                 else
                 {
