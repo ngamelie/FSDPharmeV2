@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DataVis = System.Windows.Forms.DataVisualization;
 
 namespace ADFSDPhamaV2
 {
@@ -22,7 +23,30 @@ namespace ADFSDPhamaV2
         public Admin()
         {
             InitializeComponent();
+            Chart1.Series[0].Points.Add(3.0).AxisLabel = "Sample data";
+            Chart1.Series[0].BorderWidth = 4;
         }
+
+        private void ChartType_Click(object sender, RoutedEventArgs e)
+        {
+            switch (((RadioButton)sender).Name)
+            {
+                case "ColRadio":
+                    Chart1.Series[0].ChartType = DataVis.Charting.SeriesChartType.Column;
+                    break;
+                case "BarRadio":
+                    Chart1.Series[0].ChartType = DataVis.Charting.SeriesChartType.Bar;
+                    break;
+                case "PieRadio":
+                    Chart1.Series[0].ChartType = DataVis.Charting.SeriesChartType.Pie;
+                    break;
+                case "LineRadio":
+                    Chart1.Series[0].ChartType = DataVis.Charting.SeriesChartType.Line;
+                    break;
+                default:
+                    break;
+            }
+        }        
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -86,5 +110,5 @@ namespace ADFSDPhamaV2
             window.Show();
         }
 
-    }
+    }    
 }

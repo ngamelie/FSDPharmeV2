@@ -33,9 +33,7 @@ namespace ADFSDPhamaV2
             BtnUpdate.IsEnabled = false;
             BtnDelete.IsEnabled = false;
             Tbx_id.Text = "";
-            Tbx_quantity.Text = "";
-            Combo_Medication.SelectedIndex = 0;
-
+            
             PharmaConn pharmaConn = new PharmaConn();
             ArrayList list = new ArrayList();
             foreach (Medication med in pharmaConn.Medications.ToList())
@@ -43,7 +41,6 @@ namespace ADFSDPhamaV2
                 list.Add(med.id);
             }
 
-            Combo_Medication.ItemsSource = list;
             LvList.ItemsSource = pharmaConn.Stocks.ToList();
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -71,8 +68,7 @@ namespace ADFSDPhamaV2
             }
             else
             {
-                Tbx_id.Text = currSelected.med.ToString();
-                Tbx_quantity.Text = currSelected.quantity.ToString();
+                Tbx_id.Text = currSelected.med.ToString();               
 
             }
         }
@@ -90,12 +86,12 @@ namespace ADFSDPhamaV2
             try
             {
                 Stock stock = new Stock();
-                stock.med = int.Parse(Combo_Medication.SelectedItem.ToString());
+                //stock.med = int.Parse(Combo_Medication.SelectedItem.ToString());
 
-                if (int.TryParse(Tbx_quantity.Text, out int rs))
-                {
-                    stock.quantity = rs;
-                }
+                //if (int.TryParse(Tbx_quantity.Text, out int rs))
+                //{
+                //    stock.quantity = rs;
+                //}
 
                 if (Verify(stock))
                 {
@@ -124,10 +120,10 @@ namespace ADFSDPhamaV2
             {
                 Stock stock = new Stock();
                 stock.med = int.Parse(Tbx_id.Text);
-                if (int.TryParse(Tbx_quantity.Text, out int rs))
-                {
-                    stock.quantity = rs;
-                }
+                //if (int.TryParse(Tbx_quantity.Text, out int rs))
+                //{
+                //    stock.quantity = rs;
+                //}
 
                 if (Verify(stock))
                 {

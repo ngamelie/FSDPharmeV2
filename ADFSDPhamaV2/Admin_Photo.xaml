@@ -172,7 +172,9 @@
 
                     <TextBlock Text="Main Menu"
                                Style="{StaticResource menuTitle}" />
-                    <Button Style="{DynamicResource menuButton}" Click="BtnDash_Click">
+
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnDash_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -181,7 +183,9 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}"  Click="BtnMedication_Click">
+
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnMedication_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="PillMultiple"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -190,7 +194,9 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Menu_User" Click="BtnUser_Click"
+
+                    <Button x:Name="Menu_User"
+                            Click="BtnUser_Click"
                             Style="{DynamicResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountMultipleCheckOutline"
@@ -200,7 +206,9 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}"  Click="BtnSupplier_Click">
+
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnSupplier_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Reproduction"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -209,30 +217,25 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}" Click="BtnPhoto_Click">
+
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnPhoto_Click">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Reproduction"
+                            <materialDesign:PackIcon Kind="Image"
                                                      Style="{StaticResource menuButtonIcon}"
                                                      Height="23" />
-                            <TextBlock Text="Photo" 
+                            <TextBlock Text="Photo"
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}" Click="BtnCustomer_Click">
+
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnCustomer_Click">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Reproduction"
+                            <materialDesign:PackIcon Kind="FaceAgent"
                                                      Style="{StaticResource menuButtonIcon}"
                                                      Height="23" />
                             <TextBlock Text="Customer"
-                                       Style="{StaticResource menuButtonText}"></TextBlock>
-                        </StackPanel>
-                    </Button>
-                    <Button Style="{DynamicResource menuButton}" Click="BtnStock_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Reproduction"
-                                                     Style="{StaticResource menuButtonIcon}"
-                                                     Height="23" />
-                            <TextBlock Text="Stock"
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>

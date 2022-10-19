@@ -4,12 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ADFSDPhamaV2"
+        xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStyle="None"
-        AllowsTransparency="True"
-        Background="Transparent"
         WindowStartupLocation="CenterScreen"
         Title="FSD Admin"
         Height="700"
@@ -172,7 +171,9 @@
 
                     <TextBlock Text="Main Menu"
                                Style="{StaticResource menuTitle}" />
-                    <Button Style="{DynamicResource menuButton}" Click="BtnDash_Click">
+
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnDash_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -181,7 +182,9 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}"  Click="BtnMedication_Click">
+
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnMedication_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="PillMultiple"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -190,7 +193,9 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Menu_User" Click="BtnUser_Click"
+
+                    <Button x:Name="Menu_User"
+                            Click="BtnUser_Click"
                             Style="{DynamicResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountMultipleCheckOutline"
@@ -200,7 +205,9 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}"  Click="BtnSupplier_Click">
+
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnSupplier_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Reproduction"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -209,30 +216,25 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}" Click="BtnPhoto_Click">
+
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnPhoto_Click">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Reproduction"
+                            <materialDesign:PackIcon Kind="Image"
                                                      Style="{StaticResource menuButtonIcon}"
                                                      Height="23" />
-                            <TextBlock Text="Photo" 
+                            <TextBlock Text="Photo"
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}" Click="BtnCustomer_Click">
+
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnCustomer_Click">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Reproduction"
+                            <materialDesign:PackIcon Kind="FaceAgent"
                                                      Style="{StaticResource menuButtonIcon}"
                                                      Height="23" />
                             <TextBlock Text="Customer"
-                                       Style="{StaticResource menuButtonText}"></TextBlock>
-                        </StackPanel>
-                    </Button>
-                    <Button Style="{DynamicResource menuButton}" Click="BtnStock_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Reproduction"
-                                                     Style="{StaticResource menuButtonIcon}"
-                                                     Height="23" />
-                            <TextBlock Text="Stock"
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
@@ -257,70 +259,81 @@
                   Grid.RowSpan="2"
                   Margin="30 20 20 10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <!-- Search-->
-                <Canvas Margin="0,0,0,593"
-                        Grid.Row="0">
-                    <TextBox materialDesign:HintAssist.Hint="Search here..."
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center"
-                             materialDesign:HintAssist.Foreground="#a36800"
-                             materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
-                             Width="300"
-                             Height="48" />
-                    <Button BorderBrush="Transparent"
-                            Background="Transparent"
-                            Width="57"
-                            Height="46"
-                            Canvas.Left="243"
-                            Canvas.Top="2">
-                        <materialDesign:PackIcon Kind="Magnify"
-                                                 Height="30"
-                                                 Width="30"
-                                                 VerticalAlignment="Center"
-                                                 HorizontalAlignment="Center"
-                                                 Foreground="#A36800" />
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="FSDPharma Management System"
+                               FontSize="35"
+                               Foreground="#a36800"
+                               Width="524"
+                               Height="54"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                </StackPanel>
 
-                    </Button>
-                </Canvas>
-                <StackPanel Orientation="Horizontal"
-                            Margin="0,67,0,494">
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal">
                     <TextBlock Text="Dashboard"
                                Width="586"
                                FontSize="20"
                                FontWeight="SemiBold"
                                VerticalAlignment="Center" />
-                    <Button x:Name="BtnAddNewMed"
-                            Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                            RenderTransformOrigin="0.495,-1.453"
-                            Width="150"
-                            BorderBrush="#FFA36800"
-                            Background="#FFA36800"
-                            Foreground="White"
-                            VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Pill" />
-                            <TextBlock Text="Add New"
-                                       Margin="8 0 0 0" />
-                        </StackPanel>
-                    </Button>
                 </StackPanel>
-                <Border Margin="0,134,0,0"
-                        CornerRadius="5"
-                        Background="White"
-                        BorderThickness="1">
 
-                    <StackPanel>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="595*" />
+                        <ColumnDefinition Width="150*" />
+                    </Grid.ColumnDefinitions>
 
+                    <Grid Margin="10,10,10,10"
+                          Grid.Column="0">
+                        <WindowsFormsHost Panel.ZIndex="10">
+                            <wf:Chart x:Name="Chart1">
+                                <wf:Chart.Series>
+                                    <wf:Series ChartType="Column" />
+                                </wf:Chart.Series>
+                                <wf:Chart.ChartAreas>
+                                    <wf:ChartArea />
+                                </wf:Chart.ChartAreas>
+                            </wf:Chart>
+                        </WindowsFormsHost>
+                    </Grid>
+                    <StackPanel Grid.Column="1"
+                                Margin="10,10,10,10">
+                        <Label Content="Chart type"
+                               FontSize="14" />
+                        <StackPanel Orientation="Vertical">
+                            <RadioButton Name="ColRadio"
+                                         Content="Column"
+                                         GroupName="ChartTypeRadios"
+                                         Margin="20,5,0,0"
+                                         IsChecked="True"
+                                         Click="ChartType_Click" />
+                            <RadioButton Name="BarRadio"
+                                         Content="Bar"
+                                         GroupName="ChartTypeRadios"
+                                         Margin="20,5,0,0"
+                                         Click="ChartType_Click" />
+                            <RadioButton Name="PieRadio"
+                                         Content="Pie"
+                                         GroupName="ChartTypeRadios"
+                                         Margin="20,5,0,0"
+                                         Click="ChartType_Click" />
+                            <RadioButton Name="LineRadio"
+                                         Content="Line"
+                                         GroupName="ChartTypeRadios"
+                                         Margin="20,5,0,0"
+                                         Click="ChartType_Click" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,5,0,0" />
                     </StackPanel>
-                </Border>
+                </Grid>
+
 
             </Grid>
 

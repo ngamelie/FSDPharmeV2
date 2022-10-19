@@ -173,7 +173,8 @@
                     <TextBlock Text="Main Menu"
                                Style="{StaticResource menuTitle}" />
 
-                    <Button Style="{DynamicResource menuButton}" Click="BtnDash_Click">
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnDash_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -182,7 +183,9 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}"  Click="BtnMedication_Click">
+                    
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnMedication_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="PillMultiple"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -191,7 +194,9 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Menu_User" Click="BtnUser_Click"
+                    
+                    <Button x:Name="Menu_User"
+                            Click="BtnUser_Click"
                             Style="{DynamicResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountMultipleCheckOutline"
@@ -201,7 +206,9 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}"  Click="BtnSupplier_Click">
+                    
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnSupplier_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Reproduction"
                                                      Style="{StaticResource menuButtonIcon}"
@@ -210,34 +217,29 @@
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}" Click="BtnPhoto_Click">
+                    
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnPhoto_Click">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Reproduction"
+                            <materialDesign:PackIcon Kind="Image"
                                                      Style="{StaticResource menuButtonIcon}"
                                                      Height="23" />
-                            <TextBlock Text="Photo" 
+                            <TextBlock Text="Photo"
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}" Click="BtnCustomer_Click">
+                    
+                    <Button Style="{DynamicResource menuButton}"
+                            Click="BtnCustomer_Click">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Reproduction"
+                            <materialDesign:PackIcon Kind="FaceAgent"
                                                      Style="{StaticResource menuButtonIcon}"
                                                      Height="23" />
                             <TextBlock Text="Customer"
                                        Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource menuButton}" Click="BtnStock_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Reproduction"
-                                                     Style="{StaticResource menuButtonIcon}"
-                                                     Height="23" />
-                            <TextBlock Text="Stock"
-                                       Style="{StaticResource menuButtonText}"></TextBlock>
-                        </StackPanel>
-                    </Button>
-
+                    
                     <Button Style="{DynamicResource menuButton}"
                             Margin="15 120 15 0"
                             Click="BtnLogout_Click">
@@ -264,7 +266,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-
+                <!-- Search -->
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -303,7 +305,6 @@
                                                      VerticalAlignment="Center"
                                                      HorizontalAlignment="Center"
                                                      Foreground="#A36800" />
-
                         </Button>
                     </Canvas>
                 </Grid>
@@ -324,7 +325,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"></RowDefinition>
                             <RowDefinition Height="40"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
@@ -348,15 +349,66 @@
                                  materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
                                  IsReadOnly="True" />
 
-                        <Label Content="Medication:"
+                        <Label Content="Name:"
                                Grid.Row="1"
                                Grid.Column="0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Width="80" />
 
-                        <ComboBox x:Name="Combo_Medication" SelectionChanged="Combo_Medication_SelectionChanged"
-                                  Grid.Row="1"
+                        <TextBox x:Name="Tbx_name"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                                 Height="25"
+                                 Width="200"
+                                 HorizontalAlignment="Left"
+                                 TextWrapping="Wrap"
+                                 VerticalAlignment="Center"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#a36800" />
+
+                        <Label Content="Description:"
+                               Grid.Row="0"
+                               Grid.Column="2"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Width="80" />
+
+                        <TextBox x:Name="Tbx_description"
+                                 Grid.Row="0"
+                                 Grid.Column="3"
+                                 Height="25"
+                                 Width="200"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 TextWrapping="Wrap"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#a36800" />
+
+                        <Label Content="Unit:"
+                               Grid.Row="1"
+                               Grid.Column="2"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Width="80" />
+
+                        <TextBox x:Name="Tbx_unit"
+                                 Grid.Row="1"
+                                 Grid.Column="3"
+                                 Height="25"
+                                 Width="200"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 TextWrapping="Wrap"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#a36800" />
+
+                        <Label Content="Suplier ID:"
+                               Grid.Row="3"
+                               Grid.Column="0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Width="80" />
+
+                        <ComboBox x:Name="Cmb_suplier"
+                                  Grid.Row="3"
                                   Grid.Column="1"
                                   Height="25"
                                   Width="200"
@@ -364,24 +416,21 @@
                                   VerticalAlignment="Center"
                                   materialDesign:TextFieldAssist.UnderlineBrush="#a36800" />
 
-                        <Label Content="Quantity:"
-                               Grid.Row="0"
+                        <Label Content="Photo ID:"
+                               Grid.Row="3"
                                Grid.Column="2"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Width="80" />
 
-                        <TextBox x:Name="Tbx_quantity"
-                                 Grid.Row="0"
-                                 Grid.Column="3"
-                                 Height="25"
-                                 Width="200"
-                                 HorizontalAlignment="Left"
-                                 TextWrapping="Wrap"
-                                 materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
-                                 VerticalAlignment="Center" />
-
-
+                        <ComboBox x:Name="Cmb_photo"
+                                  Grid.Row="3"
+                                  Grid.Column="3"
+                                  Height="25"
+                                  Width="200"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  materialDesign:TextFieldAssist.UnderlineBrush="#a36800" />
                     </Grid>
                 </Border>
 
@@ -450,28 +499,32 @@
                         BorderThickness="1">
 
                     <ListView Name="LvList"
-                              HorizontalAlignment="Left"
-                              Height="441"
-                              Margin="10,9,0,0"
-                              VerticalAlignment="Top"
-                              Width="700"
+                              HorizontalAlignment="Center"
+                              Height="368"
+                              VerticalAlignment="Center"
+                              Width="714"
                               SelectionMode="Single"
                               SelectionChanged="LvList_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id"
-                                                Width="100"
-                                                DisplayMemberBinding="{Binding med}" />
-                                <GridViewColumn Header="Quantity"
-                                                Width="200"
-                                                DisplayMemberBinding="{Binding quantity}" />
-
+                                                Width="100"                                 DisplayMemberBinding="{Binding}" />
+                                <GridViewColumn Header="Name"
+                                                Width="100"                                DisplayMemberBinding="{Binding }" />
+                                <GridViewColumn Header="Description"
+                                                Width="150"                                DisplayMemberBinding="{Binding}" />
+                                <GridViewColumn Header="Unit"
+                                                Width="100"                                DisplayMemberBinding="{Binding }" />
+                                <GridViewColumn Header="Suplier Id"
+                                                Width="120"                                DisplayMemberBinding="{Binding }" />
+                                <GridViewColumn Header="Photo Id"
+                                                Width="120"                                DisplayMemberBinding="{Binding quantity}" />
+                                
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </Border>
             </Grid>
-
         </Grid>
     </Border>
 
