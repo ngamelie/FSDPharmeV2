@@ -162,15 +162,23 @@ namespace ADFSDPhamaV2
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
-            Usr currSelected = LvUser.SelectedItem as Usr;
-            Usr usr = new Usr { id = currSelected.id };
-            PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Usrs.Attach(usr);
-            pharmaConn.Entry(usr).State = System.Data.Entity.EntityState.Deleted;
-            pharmaConn.SaveChanges();
-            init();
-            LvUser.SelectedItem = null;
-            MessageBox.Show("User information delete.");
+            try
+            {
+                Usr currSelected = LvUser.SelectedItem as Usr;
+                Usr usr = new Usr { id = currSelected.id };
+                PharmaConn pharmaConn = new PharmaConn();
+                pharmaConn.Usrs.Attach(usr);
+                pharmaConn.Entry(usr).State = System.Data.Entity.EntityState.Deleted;
+                pharmaConn.SaveChanges();
+                init();
+                LvUser.SelectedItem = null;
+                MessageBox.Show("User information delete.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Information you delete is in using.");
+            }
+            
         }
 
         private void BtnDash_Click(object sender, RoutedEventArgs e)

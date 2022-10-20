@@ -169,15 +169,22 @@ namespace ADFSDPhamaV2
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
-            Medication currSelected = LvList.SelectedItem as Medication;
-            Medication medication = new Medication { id = currSelected.id };
-            PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Medications.Attach(medication);
-            pharmaConn.Entry(medication).State = System.Data.Entity.EntityState.Deleted;
-            pharmaConn.SaveChanges();
-            init();
-            LvList.SelectedItem = null;
-            MessageBox.Show("Information delete.");
+            try 
+            { 
+                Medication currSelected = LvList.SelectedItem as Medication;
+                Medication medication = new Medication { id = currSelected.id };
+                PharmaConn pharmaConn = new PharmaConn();
+                pharmaConn.Medications.Attach(medication);
+                pharmaConn.Entry(medication).State = System.Data.Entity.EntityState.Deleted;
+                pharmaConn.SaveChanges();
+                init();
+                LvList.SelectedItem = null;
+                MessageBox.Show("Information delete.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Information you delete is in using.");
+            }
         }
 
         private void BtnDash_Click(object sender, RoutedEventArgs e)

@@ -141,15 +141,22 @@ namespace ADFSDPhamaV2
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
-            Suplier currSelected = LvList.SelectedItem as Suplier;
-            Suplier suplier = new Suplier { id = currSelected.id };
-            PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Supliers.Attach(suplier);
-            pharmaConn.Entry(suplier).State = System.Data.Entity.EntityState.Deleted;
-            pharmaConn.SaveChanges();
-            init();
-            LvList.SelectedItem = null;
-            MessageBox.Show("Information delete.");
+            try
+            {
+                Suplier currSelected = LvList.SelectedItem as Suplier;
+                Suplier suplier = new Suplier { id = currSelected.id };
+                PharmaConn pharmaConn = new PharmaConn();
+                pharmaConn.Supliers.Attach(suplier);
+                pharmaConn.Entry(suplier).State = System.Data.Entity.EntityState.Deleted;
+                pharmaConn.SaveChanges();
+                init();
+                LvList.SelectedItem = null;
+                MessageBox.Show("Information delete.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Information you delete is in using.");
+            }
         }
 
 
