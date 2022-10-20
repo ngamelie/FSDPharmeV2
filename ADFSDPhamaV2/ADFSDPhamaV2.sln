@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADFSDPhamaV2", "ADFSDPhamaV2.csproj", "{23E01087-B112-47BC-A4B7-DB1459937DEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestFSDPharma", "..\UnitTestFSDPharma\UnitTestFSDPharma.csproj", "{CABDCF59-2B82-4EBA-8896-24D498CA7AD9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestFSDPha", "..\UnitTestFSDPha\UnitTestFSDPha.csproj", "{84875C3C-7B1B-4E74-BACC-545C6BA94AF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{23E01087-B112-47BC-A4B7-DB1459937DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E01087-B112-47BC-A4B7-DB1459937DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23E01087-B112-47BC-A4B7-DB1459937DEA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CABDCF59-2B82-4EBA-8896-24D498CA7AD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CABDCF59-2B82-4EBA-8896-24D498CA7AD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CABDCF59-2B82-4EBA-8896-24D498CA7AD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CABDCF59-2B82-4EBA-8896-24D498CA7AD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84875C3C-7B1B-4E74-BACC-545C6BA94AF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84875C3C-7B1B-4E74-BACC-545C6BA94AF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84875C3C-7B1B-4E74-BACC-545C6BA94AF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84875C3C-7B1B-4E74-BACC-545C6BA94AF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
