@@ -283,7 +283,7 @@
                     <!-- Search-->
                     <Canvas Grid.Row="0"
                             Grid.Column="1">
-                        <TextBox materialDesign:HintAssist.Hint="Search here..."
+                        <TextBox Name="TbxSearch" materialDesign:HintAssist.Hint="Search here..."
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  VerticalAlignment="Top"
                                  materialDesign:HintAssist.Foreground="#a36800"
@@ -292,18 +292,17 @@
                                  Height="48"
                                  Canvas.Left="67"
                                  Canvas.Top="1" />
-                        <Button BorderBrush="Transparent"
+                        <Button Name="BtnSearch" BorderBrush="Transparent"
                                 Background="Transparent"
                                 Width="57"
                                 Height="46"
                                 Canvas.Left="310"
-                                Canvas.Top="3">
+                                Canvas.Top="3"
+                                Click="BtnSearch_Click">
                             <materialDesign:PackIcon Kind="Magnify"
                                                      Height="30"
-                                                     Width="30"
-                                                     VerticalAlignment="Center"
-                                                     HorizontalAlignment="Center"
-                                                     Foreground="#A36800" />
+                                                     Width="30"                    VerticalAlignment="Center"                         HorizontalAlignment="Center"                       Foreground="#A36800"
+                                                     />
 
                         </Button>
                     </Canvas>

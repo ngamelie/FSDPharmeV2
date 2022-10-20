@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -227,7 +228,6 @@ namespace ADFSDPhamaV2
             return rs;
         }
 
-
         private bool AreUsrInputsValid()
         {
             string email = Tbx_email.Text;
@@ -328,8 +328,15 @@ namespace ADFSDPhamaV2
             }
         }
 
-
-
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            using (PharmaConn pharmaConn = new PharmaConn())
+            {
+                LvUser.ItemsSource = (from user in pharmaConn.Usrs
+                                      where user.email.Contains(TbxSearch.Text)
+                                      select user).ToList();                
+            }
+        }
     }
 
 }
