@@ -143,7 +143,7 @@ namespace ADFSDPhamaV2
             }
 
             //if (Verify(usr))
-            if (AreUsrUpdateValid())
+            if (AreUsrInputsValid())
             {
                 PharmaConn pharmaConn = new PharmaConn();
                 pharmaConn.Usrs.AddOrUpdate(usr);
@@ -246,31 +246,6 @@ namespace ADFSDPhamaV2
                 return false;
             }
             
-            if (!IsUsrEmailUnique(email, out string errorEmailNotUnique))
-            {
-                MessageBox.Show(this, errorEmailNotUnique, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            
-            return true;
-        }
-
-        private bool AreUsrUpdateValid()
-        {
-            string email = Tbx_email.Text;
-            string pword = Tbx_password.Text;
-
-            if (!IsUsrEmailValid(email, out string errorEmail))
-            {
-                MessageBox.Show(this, errorEmail, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-
-            if (!IsUsrPwordValid(pword, out string errorPword))
-            {
-                MessageBox.Show(this, errorPword, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
             /*
             if (!IsUsrEmailUnique(email, out string errorEmailNotUnique))
             {
@@ -278,8 +253,11 @@ namespace ADFSDPhamaV2
                 return false;
             }
             */
+            
             return true;
         }
+
+        
 
 
         // Usr email validate using MailAddress Class
@@ -325,6 +303,7 @@ namespace ADFSDPhamaV2
 
         }
 
+        /*
         // Usr email unique validate
 
         private bool IsUsrEmailUnique(string email, out string errorEmailNotUnique)
@@ -356,6 +335,7 @@ namespace ADFSDPhamaV2
 
             }
         }
+        */
 
 
 
