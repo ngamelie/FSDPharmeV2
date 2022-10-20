@@ -69,12 +69,6 @@ namespace ADFSDPhamaV2
             string uname = TbxUsername.Text;
             string pword = PbxPassword.Password.ToString();
 
-            //string uname = "wu@gmail.com";
-            //string pword = "123";
-
-            //string uname = "bob@gmail.com";
-            //string pword = "123";
-
             Usr rs = null;
 
             foreach (Usr usr in list)
