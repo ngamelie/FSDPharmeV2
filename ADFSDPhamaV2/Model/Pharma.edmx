@@ -10,7 +10,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="phone" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="100" />
@@ -37,12 +37,12 @@
         </EntityType>
         <EntityType Name="Order_details">
           <Key>
-            <PropertyRef Name="order_id" />
-            <PropertyRef Name="medication_id" />
+            <PropertyRef Name="order" />
+            <PropertyRef Name="medication" />
           </Key>
-          <Property Name="order_id" Type="int" Nullable="false" />
-          <Property Name="medication_id" Type="int" Nullable="false" />
-          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="order" Type="int" Nullable="false" />
+          <Property Name="medication" Type="int" Nullable="false" />
+          <Property Name="price" Type="float" />
           <Property Name="quantity" Type="int" />
         </EntityType>
         <EntityType Name="Photo">
@@ -51,6 +51,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="photo" Type="image" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -86,7 +87,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Order_details">
-              <PropertyRef Name="medication_id" />
+              <PropertyRef Name="medication" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -134,7 +135,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Order_details">
-              <PropertyRef Name="order_id" />
+              <PropertyRef Name="order" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -210,7 +211,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -245,15 +246,15 @@
         </EntityType>
         <EntityType Name="Order_details">
           <Key>
-            <PropertyRef Name="order_id" />
-            <PropertyRef Name="medication_id" />
+            <PropertyRef Name="order" />
+            <PropertyRef Name="medication" />
           </Key>
-          <Property Name="order_id" Type="Int32" Nullable="false" />
-          <Property Name="medication_id" Type="Int32" Nullable="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="order" Type="Int32" Nullable="false" />
+          <Property Name="medication" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Double" />
           <Property Name="quantity" Type="Int32" />
-          <NavigationProperty Name="Medication" Relationship="Self.FK_details_medication" FromRole="Order_details" ToRole="Medication" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_order_details" FromRole="Order_details" ToRole="Order" />
+          <NavigationProperty Name="Medication1" Relationship="Self.FK_details_medication" FromRole="Order_details" ToRole="Medication" />
+          <NavigationProperty Name="Order1" Relationship="Self.FK_order_details" FromRole="Order_details" ToRole="Order" />
         </EntityType>
         <EntityType Name="Photo">
           <Key>
@@ -261,6 +262,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="photo1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Medications" Relationship="Self.FK_medication_photo" FromRole="Photo" ToRole="Medication" />
         </EntityType>
         <EntityType Name="Stock">
@@ -312,7 +314,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Order_details">
-              <PropertyRef Name="medication_id" />
+              <PropertyRef Name="medication" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -360,7 +362,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Order_details">
-              <PropertyRef Name="order_id" />
+              <PropertyRef Name="order" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -460,8 +462,8 @@
           <EntitySetMapping Name="Order_details">
             <EntityTypeMapping TypeName="pharmaModel.Order_details">
               <MappingFragment StoreEntitySet="Order_details">
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="medication_id" ColumnName="medication_id" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="medication" ColumnName="medication" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
@@ -472,6 +474,7 @@
               <MappingFragment StoreEntitySet="Photo">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="photo1" ColumnName="photo" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -178,3 +178,42 @@
 	- 	
 
 =============================================================
+2022/10/18 (Ngan)
+1. Done / not done since last scrum:
+	- Design and implement the main window layout
+	- Design and implement the login window layout
+	- Trello User Story
+
+2. To do until next Scrum:
+	- Design and implement the medication admin window layout
+	- Design and implement the user admin window layout
+	- Trello User Story
+
+3. Need assistance / figure things out
+	- Material Design
+	- MVVM model
+
+2022/10/18 (Zeen)
+1. Done / not done since last scrum:
+	- 
+	- 
+
+2. To do until next Scrum:
+	- 
+
+3. Need assistance / figure things out
+	- 
+	- 
+
+2022/10/18 (Jia)
+1. Done / not done since last scrum:
+	- 
+	- 
+
+2. To do until next Scrum:
+	- 
+
+3. Need assistance / figure things out
+	- 	
+
+=============================================================

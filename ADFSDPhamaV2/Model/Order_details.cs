@@ -14,12 +14,12 @@ namespace ADFSDPhamaV2.Model
     
     public partial class Order_details
     {
-        public int order_id { get; set; }
-        public int medication_id { get; set; }
-        public int price { get; set; }
+        public int order { get; set; }
+        public int medication { get; set; }
+        public Nullable<double> price { get; set; }
         public Nullable<int> quantity { get; set; }
     
-        public virtual Medication Medication { get; set; }
-        public virtual Order Order { get; set; }
+        public virtual Medication Medication1 { get; set; }
+        public virtual Order Order1 { get; set; }
     }
 }

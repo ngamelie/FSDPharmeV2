@@ -141,26 +141,7 @@
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               materialDesign:TextFieldAssist.UnderlineBrush="#a36800"
-                              Margin="0,24,0,0" />
-
-                    <Button x:Name="BtnSave"
-                            Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                            RenderTransformOrigin="0.495,-1.453"
-                            Width="120"
-                            BorderBrush="#FFA36800"
-                            Background="#FFA36800"
-                            Foreground="White"
-                            VerticalAlignment="Top"
-                            Margin="40,114,90,0"
-                            Grid.Row="1">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="FilePlus" />
-                            <TextBlock Text="Save"
-                                       Margin="8 0 0 0" />
-                        </StackPanel>
-                    </Button>
-
+                              Margin="0,24,0,0" SelectionChanged="Cbo_Customer_SelectionChanged" />
 
                     <Grid Grid.Row="1"
                           Grid.Column="2">
@@ -365,6 +346,25 @@
                         <Button x:Name="BtnAdd"
                                 Grid.Row="3"
                                 Grid.Column="0"
+                                Grid.ColumnSpan="1"
+                                Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                RenderTransformOrigin="0.495,-1.453"
+                                Width="120"
+                                BorderBrush="#FFA36800"
+                                Background="#FFA36800"
+                                Foreground="White"
+                                VerticalAlignment="Center" Click="BtnAdd_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="FilePlus" />
+                                <TextBlock Text="Add"
+                                           Margin="8 0 0 0" />
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BtnSave"
+                                Grid.Row="4"
+                                Grid.Column="0"
                                 Grid.ColumnSpan="2"
                                 Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
                                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
@@ -373,10 +373,10 @@
                                 BorderBrush="#FFA36800"
                                 Background="#FFA36800"
                                 Foreground="White"
-                                VerticalAlignment="Center">
+                                VerticalAlignment="Center" Click="BtnSave_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="FilePlus" />
-                                <TextBlock Text="Add"
+                                <TextBlock Text="Submit"
                                            Margin="8 0 0 0" />
                             </StackPanel>
                         </Button>
@@ -389,23 +389,32 @@
                             Margin="10,0,10,0"
                             Grid.Column="2">
 
-                        <ListView Name="LvUser"
+                        <ListView Name="LvList"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   SelectionMode="Single"
                                   Height="210"
                                   Width="605">
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Delete" Click="BtnDeleteTask_Click"/>
+
+                                </ContextMenu>
+                            </ListView.ContextMenu>
                             <ListView.View>
                                 <GridView>
+                                    <GridViewColumn Header="ID"
+                                                    Width="100"
+                                                    DisplayMemberBinding="{Binding medication}" />
                                     <GridViewColumn Header="Medication"
-                                                    Width="200"
-                                                    DisplayMemberBinding="{Binding }" />
+                                                    Width="150"
+                                                    DisplayMemberBinding="{Binding Medication1.name}" />
                                     <GridViewColumn Header="Price"
-                                                    Width="200"
-                                                    DisplayMemberBinding="{Binding}" />
+                                                    Width="150"
+                                                    DisplayMemberBinding="{Binding price}" />
                                     <GridViewColumn Header="Quantity"
-                                                    Width="200"
-                                                    DisplayMemberBinding="{Binding }" />
+                                                    Width="150"
+                                                    DisplayMemberBinding="{Binding quantity}" />
 
                                 </GridView>
                             </ListView.View>

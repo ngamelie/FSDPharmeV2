@@ -13,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ADFSDPhamaV2
@@ -29,19 +30,27 @@ namespace ADFSDPhamaV2
         }
         private void init()
         {
-            Tbl_Title.Text = "Stock";
+            Tbl_Title.Text = "Medication";
             BtnUpdate.IsEnabled = false;
             BtnDelete.IsEnabled = false;
             Tbx_id.Text = "";
+            Tbx_description.Text = "";
+            Tbx_name.Text = "";
+            Tbx_unit.Text = "";
+            Cmb_photo.SelectedIndex = -1;
+            Cmb_suplier.SelectedIndex = -1;
             
             PharmaConn pharmaConn = new PharmaConn();
-            ArrayList list = new ArrayList();
-            foreach (Medication med in pharmaConn.Medications.ToList())
-            {
-                list.Add(med.id);
-            }
 
-            LvList.ItemsSource = pharmaConn.Stocks.ToList();
+            Cmb_suplier.ItemsSource = pharmaConn.Supliers.ToList();
+            Cmb_suplier.SelectedValuePath = "id";
+            Cmb_suplier.DisplayMemberPath = "name";
+
+            Cmb_photo.ItemsSource = pharmaConn.Photos.ToList();
+            Cmb_photo.SelectedValuePath = "id";
+            Cmb_photo.DisplayMemberPath = "name";
+
+            LvList.ItemsSource = pharmaConn.Medications.ToList();
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -58,8 +67,8 @@ namespace ADFSDPhamaV2
 
         private void LvList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            BtnAdd.IsEnabled = false;
-            Stock currSelected = LvList.SelectedItem as Stock;
+            //BtnAdd.IsEnabled = false;
+            Medication currSelected = LvList.SelectedItem as Medication;
             BtnUpdate.IsEnabled = (currSelected != null);
             BtnDelete.IsEnabled = (currSelected != null);
             if (currSelected == null)
@@ -68,35 +77,39 @@ namespace ADFSDPhamaV2
             }
             else
             {
-                Tbx_id.Text = currSelected.med.ToString();               
-
+                Tbx_id.Text = currSelected.id.ToString();
+                Tbx_description.Text = currSelected.description;
+                Tbx_name.Text = currSelected.name;
+                Tbx_unit.Text = currSelected.unit.ToString();
+                Cmb_suplier.SelectedValue = currSelected.suplier_id;
+                Cmb_photo.SelectedValue = currSelected.photo_id;
             }
-        }
-
-        private void Combo_Medication_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            BtnAdd.IsEnabled = true;
-            BtnUpdate.IsEnabled = false;
-            BtnDelete.IsEnabled = false;
-            Tbx_id.Text = "";
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Stock stock = new Stock();
-                //stock.med = int.Parse(Combo_Medication.SelectedItem.ToString());
+                Medication medication = new Medication();
+                medication.name = Tbx_name.Text;
+                medication.description = Tbx_description.Text;
+                medication.suplier_id = (int)Cmb_suplier.SelectedValue;
+                medication.photo_id = (int)Cmb_photo.SelectedValue;
+                if (int.TryParse(Tbx_unit.Text, out int rs))
+                {
+                    medication.unit = rs;
+                } 
+                else
+                {
+                    MessageBox.Show("Check unit.");
+                    return;
+                }
+                
 
-                //if (int.TryParse(Tbx_quantity.Text, out int rs))
-                //{
-                //    stock.quantity = rs;
-                //}
-
-                if (Verify(stock))
+                if (Verify(medication))
                 {
                     PharmaConn pharmaConn = new PharmaConn();
-                    pharmaConn.Stocks.Add(stock);
+                    pharmaConn.Medications.Add(medication);
                     pharmaConn.SaveChanges();
                 }
                 else
@@ -118,17 +131,25 @@ namespace ADFSDPhamaV2
         {
             try
             {
-                Stock stock = new Stock();
-                stock.med = int.Parse(Tbx_id.Text);
-                //if (int.TryParse(Tbx_quantity.Text, out int rs))
-                //{
-                //    stock.quantity = rs;
-                //}
+                Medication medication = new Medication();
+                medication.id = int.Parse(Tbx_id.Text);
+                medication.name = Tbx_name.Text;
+                medication.description = Tbx_description.Text;
+                medication.suplier_id = (int)Cmb_suplier.SelectedValue;
+                medication.photo_id = (int)Cmb_photo.SelectedValue;
+                if (int.TryParse(Tbx_unit.Text, out int rs))
+                {
+                    medication.unit = rs;
+                }
+                else
+                {
+                    MessageBox.Show("Check unit.");
+                }
 
-                if (Verify(stock))
+                if (Verify(medication))
                 {
                     PharmaConn pharmaConn = new PharmaConn();
-                    pharmaConn.Stocks.AddOrUpdate(stock);
+                    pharmaConn.Medications.AddOrUpdate(medication);
                     pharmaConn.SaveChanges();
                 }
                 else
@@ -148,11 +169,11 @@ namespace ADFSDPhamaV2
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
-            Stock currSelected = LvList.SelectedItem as Stock;
-            Stock stock = new Stock { med = currSelected.med };
+            Medication currSelected = LvList.SelectedItem as Medication;
+            Medication medication = new Medication { id = currSelected.id };
             PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Stocks.Attach(stock);
-            pharmaConn.Entry(stock).State = System.Data.Entity.EntityState.Deleted;
+            pharmaConn.Medications.Attach(medication);
+            pharmaConn.Entry(medication).State = System.Data.Entity.EntityState.Deleted;
             pharmaConn.SaveChanges();
             init();
             LvList.SelectedItem = null;
@@ -208,7 +229,7 @@ namespace ADFSDPhamaV2
             window.Show();
         }
 
-        private bool Verify(Stock stock)
+        private bool Verify(Medication medication)
         {
             bool rs = true;
 

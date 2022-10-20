@@ -88,8 +88,47 @@
     <Compile Include="Admin_Stock.xaml.cs">
       <DependentUpon>Admin_Stock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User.xaml.cs">
-      <DependentUpon>User.xaml</DependentUpon>
+    <Compile Include="Model\Customer.cs">
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EnumRole.cs">
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Medication.cs">
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Order.cs">
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Order_details.cs">
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pharma.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pharma.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pharma.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pharma.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pharma.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Photo.cs">
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Stock.cs">
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Suplier.cs">
+      <DependentUpon>Pharma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Usr.cs">
+      <DependentUpon>Pharma.tt</DependentUpon>
     </Compile>
     <Compile Include="PharmaUser.xaml.cs">
       <DependentUpon>PharmaUser.xaml</DependentUpon>
@@ -146,58 +185,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="PharmaUser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Customer.cs">
-      <DependentUpon>Pharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\EnumRole.cs">
-      <DependentUpon>Pharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Medication.cs">
-      <DependentUpon>Pharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Order.cs">
-      <DependentUpon>Pharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Order_details.cs">
-      <DependentUpon>Pharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Pharma.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Pharma.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Pharma.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Pharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Pharma.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Pharma.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Photo.cs">
-      <DependentUpon>Pharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Stock.cs">
-      <DependentUpon>Pharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Suplier.cs">
-      <DependentUpon>Pharma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Usr.cs">
-      <DependentUpon>Pharma.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
