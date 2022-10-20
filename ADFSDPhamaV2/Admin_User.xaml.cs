@@ -105,8 +105,9 @@ namespace ADFSDPhamaV2
 
 
             //if (Verify(usr))
-            if (AreUsrInputsValid())
+            if (AreUsrInputsValid())                
             {
+            
                 PharmaConn pharmaConn = new PharmaConn();
                 pharmaConn.Usrs.Add(usr);
                 pharmaConn.SaveChanges();
@@ -142,7 +143,7 @@ namespace ADFSDPhamaV2
             }
 
             //if (Verify(usr))
-            if (AreUsrInputsValid())
+            if (AreUsrUpdateValid())
             {
                 PharmaConn pharmaConn = new PharmaConn();
                 pharmaConn.Usrs.AddOrUpdate(usr);
@@ -244,11 +245,39 @@ namespace ADFSDPhamaV2
                 MessageBox.Show(this, errorPword, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
+            
             if (!IsUsrEmailUnique(email, out string errorEmailNotUnique))
             {
                 MessageBox.Show(this, errorEmailNotUnique, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
+            
+            return true;
+        }
+
+        private bool AreUsrUpdateValid()
+        {
+            string email = Tbx_email.Text;
+            string pword = Tbx_password.Text;
+
+            if (!IsUsrEmailValid(email, out string errorEmail))
+            {
+                MessageBox.Show(this, errorEmail, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!IsUsrPwordValid(pword, out string errorPword))
+            {
+                MessageBox.Show(this, errorPword, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            /*
+            if (!IsUsrEmailUnique(email, out string errorEmailNotUnique))
+            {
+                MessageBox.Show(this, errorEmailNotUnique, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            */
             return true;
         }
 
