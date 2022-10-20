@@ -7,9 +7,10 @@
 	- complete Trello (user stories)
 	- create github project repository
 
-
 2022/10/12 (Ngan)
 2. To do until next Scrum: 
+	- setup the github project repository
+	- setup the initial project (install libraries)
 	- Learn some Technologies
 	- Layout design
 3. Need assistance / figure things out
@@ -35,6 +36,7 @@
 1. Done / not done since last scrum:
 	- setup the github project repository
 	- setup the initial project (install libraries)
+	- Layout design
 
 2. To do until next Scrum:
 	- Design and implement the main window layout
@@ -70,17 +72,6 @@
 	- 	
 
 =============================================================
-2022/10/15 (Ngan)
-1. Done / not done since last scrum:
-	- 
-	- 
-
-2. To do until next Scrum:
-	- 
-
-3. Need assistance / figure things out
-	- 
-
 2022/10/15 (Zeen)
 1. Done / not done since last scrum:
 	- 
@@ -106,14 +97,16 @@
 =============================================================
 2022/10/16 (Ngan)
 1. Done / not done since last scrum:
-	- 
-	- 
+	- Design and implement the main window layout
+	- Design and implement the login window layout
+	- Trello User Story
 
 2. To do until next Scrum:
-	- 
-
+	- Design and implement the medication admin window layout
+	- Design and implement the user admin window layout
+	
 3. Need assistance / figure things out
-	- 
+	- Material Design
 
 2022/10/16 (Zeen)
 1. Done / not done since last scrum:
@@ -141,15 +134,13 @@
 =============================================================
 2022/10/17 (Ngan)
 1. Done / not done since last scrum:
-	- Design and implement the main window layout
-	- Design and implement the login window layout
-	- Trello User Story
-
+	- Design and implement the medication admin window layout (not done)
+	- Design and implement the user admin window layout
+	
 2. To do until next Scrum:
 	- Design and implement the medication admin window layout
-	- Design and implement the user admin window layout
-	- Trello User Story
-
+	- Design and implement the Pharma user window layout
+	
 3. Need assistance / figure things out
 	- Material Design
 	- MVVM model
@@ -180,13 +171,12 @@
 =============================================================
 2022/10/18 (Ngan)
 1. Done / not done since last scrum:
-	- Design and implement the main window layout
-	- Design and implement the login window layout
-	- Trello User Story
+	- Design and implement the medication admin window layout
+	- Design and implement the Pharma user window layout
 
 2. To do until next Scrum:
 	- Design and implement the medication admin window layout
-	- Design and implement the user admin window layout
+	- Research on WPF Report
 	- Trello User Story
 
 3. Need assistance / figure things out
@@ -217,3 +207,17 @@
 	- 	
 
 =============================================================
+2022/10/19 (Ngan)
+1. Done / not done since last scrum:
+	- Design and implement the medication with photo
+	- Dashboard with graphs
+	- Export to Excell
+	- Research on WPF Report	
+	
+2. To do until next Scrum:
+	- Fix bug
+	- Presentation 
+	- Trello
+
+3. Need assistance / figure things out
+	- None
