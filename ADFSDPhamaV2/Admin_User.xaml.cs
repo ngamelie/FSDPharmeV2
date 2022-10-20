@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Migrations;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Mail;
@@ -144,7 +145,7 @@ namespace ADFSDPhamaV2
             }
 
             //if (Verify(usr))
-            if (AreUsrInputsValid())
+            if (AreUsrUpdateInputValid())
             {
                 PharmaConn pharmaConn = new PharmaConn();
                 pharmaConn.Usrs.AddOrUpdate(usr);
@@ -162,15 +163,23 @@ namespace ADFSDPhamaV2
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
-            Usr currSelected = LvUser.SelectedItem as Usr;
-            Usr usr = new Usr { id = currSelected.id };
-            PharmaConn pharmaConn = new PharmaConn();
-            pharmaConn.Usrs.Attach(usr);
-            pharmaConn.Entry(usr).State = System.Data.Entity.EntityState.Deleted;
-            pharmaConn.SaveChanges();
-            init();
-            LvUser.SelectedItem = null;
-            MessageBox.Show("User information delete.");
+            try
+            {
+                Usr currSelected = LvUser.SelectedItem as Usr;
+                Usr usr = new Usr { id = currSelected.id };
+                PharmaConn pharmaConn = new PharmaConn();
+                pharmaConn.Usrs.Attach(usr);
+                pharmaConn.Entry(usr).State = System.Data.Entity.EntityState.Deleted;
+                pharmaConn.SaveChanges();
+                init();
+                LvUser.SelectedItem = null;
+                MessageBox.Show("User information delete.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Information you delete is in using.");
+            }
+            
         }
 
         private void BtnDash_Click(object sender, RoutedEventArgs e)
@@ -246,34 +255,56 @@ namespace ADFSDPhamaV2
                 return false;
             }
             
-            /*
+            
             if (!IsUsrEmailUnique(email, out string errorEmailNotUnique))
             {
                 MessageBox.Show(this, errorEmailNotUnique, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            */
+            
             
             return true;
         }
 
-        
+        private bool AreUsrUpdateInputValid()
+        {
+            string email = Tbx_email.Text;
+            string pword = Tbx_password.Text;
+
+            if (!IsUsrEmailValid(email, out string errorEmail))
+            {
+                MessageBox.Show(this, errorEmail, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!IsUsrPwordValid(pword, out string errorPword))
+            {
+                MessageBox.Show(this, errorPword, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+
 
 
         // Usr email validate using MailAddress Class
         private bool IsUsrEmailValid(string email, out string errorEmail)
         {
             var valid = true;
+            errorEmail = null;
             try
             {
                 var emailAddress = new MailAddress(email);
             }
-            catch
+            catch //(Exception ex) when (ex is ArgumentNullException || ex is ArgumentException||ex is FormatException)
             {
                 valid = false;
                 errorEmail = @"Invalid Email. Please input a valid Email!";
+                //MessageBox.Show(this, "Error:" + ex.Message, "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            errorEmail = null;
+            
             return valid;
 
             // Use Regex to validate email
@@ -303,7 +334,7 @@ namespace ADFSDPhamaV2
 
         }
 
-        /*
+        
         // Usr email unique validate
 
         private bool IsUsrEmailUnique(string email, out string errorEmailNotUnique)
@@ -335,7 +366,7 @@ namespace ADFSDPhamaV2
 
             }
         }
-        */
+        
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
