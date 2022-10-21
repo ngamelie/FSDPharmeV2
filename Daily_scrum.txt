@@ -61,36 +61,87 @@
 	  *server:fsd-pharma.database.windows.net
 	  *user:dbadmin
 	  *password: wF0IJluX1k09
+	- create backup database
 
 2. To do until next Scrum:
-	- 
+	- Review Database Design
+	- Learn Entity Framework
+	- Learn LINQ
 
 3. Need assistance / figure things out
+	- No target Framework 4.7.2， only have Framework 3.0 and 3.5, cannot load project
 =============================================================
+2022/10/14 (Ngan)
+1. Done / not done since last scrum:
+	- Learn material design
+
+2. To do until next Scrum:
+	- Application  Design
+
+	
+3. Need assistance / figure things out
+	- Material Design
+
+
+2022/10/14 (Zeen)
+1. Done / not done since last scrum:
+	-  Discuss business logic
+	-  Learn LINQ
+
+2. To do until next Scrum:
+	-  Prepare CRUD code
+
+3. Need assistance / figure things out
+	- 
+
+2022/10/14 (Jia)
+1. Done / not done since last scrum:
+	- Learn Entity Framework
+	- Learn LINQ
+
+2. To do until next Scrum:
+	- Prepare Visual Studio 2022
+
+3. Need assistance / figure things out
+	- Target Framework
+
+
+=============================================================
+2022/10/15 (Ngan)
+1. Done / not done since last scrum:
+	- Learn material design
+
+2. To do until next Scrum:
+	- Implement the main window layout Design
+	- Implement the login window layout Design
+	
+3. Need assistance / figure things out
+	- Material Design
+	
 2022/10/15 (Zeen)
 1. Done / not done since last scrum:
 	- create account and create azure database done
 	- connect azure database using sql server managerment done
 	- create wpf application and connect db, generate object done
+	
 2. To do until next Scrum:  
 	- ado.net wpf solution search
 	- keep learning EF framework
 	- looking for library
+	
 3. Need assistance / figure things out
 	- learn EF framework
-	- 
-	- 
 
 2022/10/15 (Jia)
 1. Done / not done since last scrum:
-	- 
-	- 
+	- User validation
 
 2. To do until next Scrum:
-	- 
+	- reinstall Windows 10
+	- reinstall Visual Studio 2022
 
 3. Need assistance / figure things out
-	- 	
+	- learn EF	
 =============================================================
 2022/10/16 (Ngan)
 1. Done / not done since last scrum:
@@ -105,17 +156,30 @@
 3. Need assistance / figure things out
 	- Material Design
 
+2022/10/16 (Zeen)
+1. Done / not done since last scrum:
+	- create account and create azure database done
+	- connect azure database using sql server managerment done
+	- create wpf application and connect db, generate object done
+2. To do until next Scrum:  
+	- login
+	- user crud
+3. Need assistance / figure things out
+	- None
+
 
 2022/10/16 (Jia)
 1. Done / not done since last scrum:
-	- 
-	- 
+	- reinstall Windows 10
+	- reinstall Visual Studio 2022 Done
 
 2. To do until next Scrum:
-	- 
+	- Admin_User validation
+	- Other validation
+	- update trello
 
 3. Need assistance / figure things out
-	- 	
+	- Generate PDF	
 
 =============================================================
 2022/10/17 (Ngan)
@@ -136,6 +200,7 @@
 	- create account and create azure database done
 	- connect azure database using sql server managerment done
 	- create wpf application and connect db, generate object done
+
 2. To do until next Scrum:  
 	- login
 	- user crud
@@ -144,14 +209,15 @@
 
 2022/10/17 (Jia)
 1. Done / not done since last scrum:
-	- 
-	- 
+	- Admin_User validation done
 
 2. To do until next Scrum:
-	- 
+	- Test Login
+	- Test crud
+	- update trello
 
 3. Need assistance / figure things out
-	- 	
+	- Generate PDF 	
 
 =============================================================
 2022/10/18 (Ngan)
@@ -182,14 +248,17 @@
 
 2022/10/18 (Jia)
 1. Done / not done since last scrum:
-	- 
-	- 
+	- Try Generate PDF using pdfsharp
+
 
 2. To do until next Scrum:
-	- 
+	- try Generate PDF	
+	- update trello
 
 3. Need assistance / figure things out
-	- 	
+	- Learn unit Test
+	- Learn Blob
+	
 
 =============================================================
 2022/10/19 (Ngan)
@@ -225,7 +294,34 @@
 	- Transaction
 	- Cascading delete
 
+2022/10/19 (Jia)
+1. Done / not done since last scrum:
+	- Continue learning blob
+	
+2. To do until next Scrum:
+	- prepare PPT
+	- collect material
+	- unit testing
+	- update trello
+
+3. Need assistance / figure things out
+	- Unit Testing case
+
 ====================================================
+2022/10/20 (Ngan)
+1. Done / not done since last scrum:
+	- medication crud done
+	- user dashboard done
+	- user add customer done
+	- user add order items done
+	- user submit an order done
+	- testing done
+	- make ppt and prepare prezentation done
+2. To do until next Scrum:  
+	- project delivery
+3. Need assistance / figure things out
+	- none
+	
 2022/10/20 (Zeen)
 1. Done / not done since last scrum:
 	- medication crud done
@@ -239,3 +335,14 @@
 	- project delivery
 3. Need assistance / figure things out
 	- none
+
+2022/10/20 (Jia)
+1. Done / not done since last scrum:
+	- validation done
+	- prepare presentation
+
+2. To do until next Scrum:
+	- project delivery
+
+3. Need assistance / figure things out
+	- none	
